@@ -1,0 +1,259 @@
+/* Тело html */
+body {
+  margin-left: auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  margin-right: auto;
+  max-width: 1200px;
+  min-width: 782px;
+  padding: 0;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./Fonts/NotoSans-Bold.eot');
+    src: local('Noto Sans Bold'), local('NotoSans-Bold'),
+        url('./Fonts/NotoSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./Fonts/NotoSans-Bold.woff2') format('woff2'),
+        url('./Fonts/NotoSans-Bold.woff') format('woff'),
+        url('./Fonts/NotoSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./Fonts/NotoSans-Italic.eot');
+    src: local('Noto Sans Italic'), local('NotoSans-Italic'),
+        url('./Fonts/NotoSans-Italic.eot?#iefix') format('embedded-opentype'),
+        url('./Fonts/NotoSans-Italic.woff2') format('woff2'),
+        url('./Fonts/NotoSans-Italic.woff') format('woff'),
+        url('./Fonts/NotoSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./Fonts/NotoSans.eot');
+    src: local('Noto Sans'), local('NotoSans'),
+        url('./Fonts/NotoSans.eot?#iefix') format('embedded-opentype'),
+        url('./Fonts/NotoSans.woff2') format('woff2'),
+        url('./Fonts/NotoSans.woff') format('woff'),
+        url('./Fonts/NotoSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('./Fonts/NotoSans-BoldItalic.eot');
+    src: local('Noto Sans Bold Italic'), local('NotoSans-BoldItalic'),
+        url('./Fonts/NotoSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('./Fonts/NotoSans-BoldItalic.woff2') format('woff2'),
+        url('./Fonts/NotoSans-BoldItalic.woff') format('woff'),
+        url('./Fonts/NotoSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Абзац */
+p {
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  font-size: 18px;
+  color: #181818;
+  text-align: justify;
+  line-height: 28px;
+}
+
+/* Ссылка */
+a {
+  /* Цвет текста */
+  color: blue;
+  /* Убираем стандартное подчёркивание браузера */
+  text-decoration: none;
+  /* Толстый шрифт */
+  font-weight: bold;
+}
+
+/* Ссылка при наведении курсора */
+a:hover {
+  /* Цвет текста */
+  color: red;
+  /* Подчёркивание */
+  text-decoration: underline;
+  /* Толстый шрифт */
+  font-weight: bold;
+  /* Плавное изменение цвета */
+  transition: color 0.5s ease;
+}
+
+/* Надчёркивание */
+.overline { text-decoration-line: overline; }
+
+/* Зачёркивание */
+.strike { text-decoration: line-through; }
+
+/* Класс контейнера для изображения */
+.image-container {
+  position: relative;
+}
+
+/* Класс для прямоугольной области окраски поверх изображения */
+.rect_highlighted {
+  /* Жёсткая позиция относительно родительского элемента */
+  position: absolute;
+  /* чтобы не мешали кликам по ссылкам */
+  pointer-events: none; 
+  /* рамка */
+  /* border: 0.1875em solid #0F1C3F; */
+}
+
+.circ_highlighted {
+  /* Жёсткая позиция относительно родительского элемента */
+  position: absolute;
+  /* чтобы не мешали кликам по ссылкам */
+  pointer-events: none; 
+  /* Закругление, превращающая прямоугольник в круг */
+  border-radius: 50%;
+  /* рамка */
+  /* border: 0.1875em solid #0F1C3F; */
+}
+
+/* Большой заголовок */
+h1 {
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Заголовок */
+h2 {
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #da7c09;
+  text-align: center;
+}
+
+/* Перечисление */
+li {
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  font-size: 18px;
+  color: #181818;
+  text-align: justify;
+  line-height: 28px;
+  margin: 10px 2em;
+}
+
+/* Текст внутри заметки */
+cite {
+  font-size: 15px;
+  color: #686868;
+  text-align: justify;
+  font-weight: 300;
+}
+
+/* Жирный шрифт для текста заметки */
+bold {
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  font-weight: 700;
+}
+
+/* Заметка "обратите внимание" */
+blockquote {
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  border-radius: 8px;
+  font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+  border-left: 8px solid #db9834;
+  font-size: 20px;
+  text-align: justify;
+  font-weight: 700;
+}
+
+/* Таблица */
+table {
+   font-family: 'Noto Sans', 'Arial', 'Verdana', sans-serif;
+   /* Нет пустых промежутков между ячейками */
+   border-collapse: collapse;
+   /* Внешняя граница серого цвета толщиной 1px */
+   border: 3px solid black;
+}
+
+/* Заголовок таблицы */
+th {
+   /* Границы ячеек заголовка каждого столбца */
+   border: 3px solid black;
+   /* Отступ слева */
+   padding-left: 5px;
+   /* Отступ справа */
+   padding-right: 5px;
+   /* элемент не переносить */
+   white-space: nowrap;
+}
+
+/* Ячейки таблицы */
+td {
+   /* Границы ячеек тела таблицы */
+   border: 1px solid grey;
+   /* отступ по краям ячеек */
+   padding: 8px;
+}
+
+/* Свойства анимированной ячейки при переходе по индексу строки */
+tr:target td {
+    animation: back_animation 2s forwards;
+}
+
+/* Свойства анимированной области при переходе по индексу элемента */
+div:target {
+    animation: back_animation2 2s forwards;
+}
+
+/* Анимация фона */
+@keyframes back_animation {
+    /* Начинаем с белого фона */
+    0%   {background: white;}
+    /* 0 % - 60 % - жёлтый фон появляется */
+    60%  {background: yellow;}
+    /* 60 % - 80 % - жёлтый фон сохраняется */
+    80%  {background: yellow;}
+    /* 80 % - 100 % - жёлтый фон плавно исчезает, сменяясь слабым серым */
+    100% {background: rgb(248, 248, 248);}
+}
+
+/* Анимация фона с прозрачностью */
+@keyframes back_animation2 {
+    /* Начинаем с белого фона */
+    0%   { background: rgba(255, 255, 0, 0.0)}
+    /* 0 % - 60 % - жёлтый фон появляется */
+    60%  { background: rgba(255, 255, 0, 0.8)}
+    /* 60 % - 80 % - жёлтый фон сохраняется */
+    80%  { background: rgba(255, 255, 0, 0.8)}
+    /* 80 % - 100 % - жёлтый фон плавно исчезает, сменяясь слабым серым */
+    100% { background: rgba(230, 230, 230, 0.8)}
+}
+
+/* Класс для платы в списке компонентов */
+.bom_board {
+  /* Выравнивание по центру */
+  text-align: center;
+  /* Жирный шрифт */
+  font-weight: 700;
+  /* Размер шрифта */
+  font-size: 24px;
+  /* Нейтрализовать padding, указанный для td */
+  margin: -8px;
+  /* Цвет фона - светло-серый */
+  background: lightgray;
+}
+
+
+/* Класс для группы в списке компонентов */
+.bom_class {
+  text-align: left;
+  font-weight: 700;
+  margin-left: 30px;
+}
