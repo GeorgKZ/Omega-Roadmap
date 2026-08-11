@@ -1,0 +1,2528 @@
+<!DOCTYPE html>
+<html><head meta charset="UTF-8">
+<title>Компоненты компьютера Омега</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<a name="bom_table"></a>
+<table><thead>
+<tr><th>Обозначение</th><th>Тип/номинал</th><th>Описание</th><th>Корпус</th><th>Фото</th><th>Назначение</th><th>Возможная замена</th></tr>
+</thead>
+<tbody>
+<tr><td colspan="7"><div class="bom_board">Системная плата</div></td></tr>
+<tr><td colspan="7"><div class="bom_class">Микросхемы: процессор и контроллеры</div></td></tr>
+
+<tr id="U1">
+	<td>
+		<a href="./boards.html#U1">U1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Z84X00_Zilog.pdf">Zilog Z80</a>
+	</td>
+	<td>
+		Процессор
+	</td>
+	<td>
+		DIP-40 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		Центральный процессор
+	</td>
+	<td>
+		Z084С0006 (6.17МГц), Z084C0008 (8МГц), Z084C0010 (10МГц), Z084C0020 (20МГц)
+	</td>
+</tr>
+<tr id="U2">
+	<td>
+		<a href="./boards.html#U2">U2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/82C55A_Intel.pdf">Intel 82C55A</a>
+	</td>
+	<td>
+		Программируемый параллельный интерфейс
+	</td>
+	<td>
+		DIP-40 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/TMP82C55A_Toshiba%20Semiconductor.pdf">Toshiba TMP82C55A</a>,
+		<a href="./DataSheets/82C55_Intersil.pdf">Intersil 82C55</a>
+	</td>
+</tr>
+<tr id="U3">
+	<td>
+		<a href="./boards.html#U3">U3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/V9958_Yamaha.pdf">Yamaha V9958</a>
+	</td>
+	<td>
+		Видеопроцессор
+	</td>
+	<td>
+		DIP-64 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		Формирование видеосигнала
+	</td>
+	<td>
+		<a href="./DataSheets/V9938_Yamaha.pdf">Yamaha V9938</a>
+	</td>
+</tr>
+<tr id="U4">
+	<td>
+		<a href="./boards.html#U4">U4</a>
+	</td>
+	<td>
+		<a href="./DataSheets/YM2149_Yamaha.pdf">Yamaha YM2149</a>
+	</td>
+	<td>
+		Аудиопроцессор
+	</td>
+	<td>
+		DIP-40 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		Синтез звуков и мзыки
+	</td>
+	<td>
+		<a href="./DataSheets/AY-3-8910_General%20Instrument.pdf">General Instrument AY-3-8910</a>
+	</td>
+</tr>
+<tr id="U5">
+	<td>
+		<a href="./boards.html#U5">U5</a>
+	</td>
+	<td>
+		<a href="./DataSheets/RP5C01A_Ricoh.pdf">Ricoh RP5C01</a>
+	</td>
+	<td>
+		Часы реального времени
+	</td>
+	<td>
+		DIP-18 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Микросхемы: память</div></td></tr>
+
+<tr id="U6">
+	<td>
+		<a href="./boards.html#U6">U6</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SST39SF040_Silicon%20Storage%20Technology.pdf">Silicon Storage Technology SST39SF040</a>
+	</td>
+	<td>
+		Энергонезависимая память
+	</td>
+	<td>
+		DIP-32 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		ПЗУ с BIOS
+	</td>
+	<td>
+		<a href="./DataSheets/SST39SF0X0_Microchip.pdf">Microchip SST39SF040</a>
+	 </td>
+</tr>
+<tr id="U7">
+	<td>
+		<a href="./boards.html#U7">U7</a>
+	</td>
+	<td><a href="./DataSheets/AS6C4008_Alliance%20Memory.pdf">Alliance Memory AS6C4008</a></td>
+	<td>
+		Статическая оперативная память
+	</td>
+	<td>
+		DIP-32 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		ОЗУ
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U8_9_10_11">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U8">U8</a>,
+		<a href="./boards.html#U9">U9</a>,
+		<a href="./boards.html#U10">U10</a>,
+		<a href="./boards.html#U11">U11</a>
+	</td>
+	<td>
+		<a href="./DataSheets/uPD41464C_NEC%20Electronics.pdf">NEC &mu;PD41464</a>
+	</td>
+	<td>
+		Динамическая оперативная память
+	</td>
+	<td>
+		DIP-18 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		видео-ОЗУ
+	</td>
+	<td>
+		<a href="./DataSheets/TMM41464AP_Toshiba.pdf">Toshiba TMM41464AP</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Микросхемы: программируемая логическая матрица</div></td></tr>
+
+<tr id="U12_13_14">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U12">U12</a>,
+		<a href="./boards.html#U13">U13</a>,
+		<a href="./boards.html#U14">U14</a>
+	</td>
+	<td>
+		<a href="./DataSheets/ATF16V8BX_Atmel.pdf">ATF16V8B</a>
+	</td>
+	<td>
+		Логическая матрица
+	</td>
+	<td>
+		DIP-20 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/GAL16V8_Lattice%20Semiconductor.pdf">Lattice Semiconductor GAL16V8B</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Микросхемы: триггеры, счётчики, регистры и т.д.</div></td></tr>
+
+<tr id="U15_16_17_18">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U15">U15</a>,
+		<a href="./boards.html#U16">U16</a>,
+		<a href="./boards.html#U17">U17</a>,
+		<a href="./boards.html#U18">U18</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HC670_CD74HCT670_Texas%20Instruments.pdf">Texas Instruments CD74HC670E</a>
+	</td>
+	<td>
+		Регистр 4x4
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/TC74HC670AP_Toshiba.pdf">Toshiba 74HC670AP</a>,
+		<a href="./DataSheets/74HC670_74HCT670_Philips%20Semiconductors.pdf">Philips 74HC670</a>,
+		<a href="./DataSheets/HD74HC670_Hitachi.pdf">Hitachi HD74HC670</a>
+	</td>
+</tr>
+<tr id="U19_20_21">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U19">U19</a>,
+		<a href="./boards.html#U20">U20</a>,
+		<a href="./boards.html#U21">U21</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74F541_Texas%20Instruments.pdf">Texas Instruments SN74F541N</a>
+	</td>
+	<td>
+		Восьмиразрядный регистр
+	</td>
+	<td>
+		DIP-20 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U22">
+	<td>
+		<a href="./boards.html#U22">U22</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74HCT540_Texas%20Instruments.pdf">Texas Instruments SN74HCT540</a>
+	</td>
+	<td>
+		Восьмиразрядный регистр
+	</td>
+	<td>
+		DIP-20 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U23_24">
+	<td>
+		<a href="./boards.html#U23">U23</a>,
+		<a href="./boards.html#U24">U24</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74HCT273_Texas%20Instruments.pdf">Texas Instruments SN74HCT273N</a>
+	</td>
+	<td>
+		Восьмиразрядный регистр
+	</td>
+	<td>
+		DIP-20 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT273_Texas%20Instruments.pdf">Texas Instruments CD74HCT273</a>
+	</td>
+</tr>
+<tr id="U25_26">
+	<td>
+		<a href="./boards.html#U25">U25</a>,
+	 	<a href="./boards.html#U26">U26</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74F245_Texas%20Instruments.pdf">Texas Instruments SN74F245N</a>
+	</td>
+	<td>
+		Восьмиканальный двунаправленный формирователь
+	</td>
+	<td>
+		DIP-20 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74LS245_Texas%20Instruments.pdf">Texas Instruments SN74LS245N</a>,
+		<a href="./DataSheets/MC74F245_Motorola.pdf">Motorola MC74F245</a>
+	</td>
+</tr>
+<tr id="U27">
+	<td>
+		<a href="./boards.html#U27">U27</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT175_Texas%20Instruments.pdf">Texas Instruments CD74HCT175E</a>
+	</td>
+	<td>
+		Счетверённый D-триггер
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U28_29">
+	<td>
+		<a href="./boards.html#U28">U28</a>,
+		<a href="./boards.html#U29">U29</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74HCT157_Texas%20Instruments.pdf">Texas Instruments SN74HCT157N</a>
+	</td>
+	<td>
+		Четырёхразрядный мультиплексор 2-1
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT175_Texas%20Instruments.pdf">Texas Instruments CD74HCT175E</a>
+	</td>
+</tr>
+<tr id="U30_31">
+	<td>
+		<a href="./boards.html#U30">U30</a>,
+		<a href="./boards.html#U31">U31</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HC153_CD74HCT153_Texas%20Instruments.pdf">Texas Instruments CD74HCT153E</a>
+	</td>
+	<td>
+		Сдвоенный селектор-мультиплексор 4-1
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U32">
+	<td>
+		<a href="./boards.html#U32">U32</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74AHCT138_Texas%20Instruments.pdf">Texas Instruments SN74AHCT138N</a>
+	</td>
+	<td>
+		Дешифратор 3 разряда на 8 направлений
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U33">
+	<td>
+		<a href="./boards.html#U33">U33</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74AHCT125_Texas%20Instruments.pdf">Texas Instruments SN74AHCT125N</a>
+	</td>
+	<td>
+		Четыре буферных элемента
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U34_35_36">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U34">U34</a>,
+		<a href="./boards.html#U35">U35</a>,
+		<a href="./boards.html#U36">U36</a>
+	</td>
+	<td>         
+		<a href="./DataSheets/SN74HCT74_Texas%20Instruments.pdf">Texas Instruments SN74HCT74N</a>
+	</td>
+	<td>
+		Два D-триггера
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT74_Texas%20Instruments.pdf">Texas Instruments CD74HCT74E</a>,
+		<a href="./DataSheets/74HC74_74HCT74_Philips%20Semiconductors.pdf">Philips 74HCT74</a>,
+		<a href="./DataSheets/74HC74_74HCT7D_Nexperia.pdf">Nexperia 74HCT74D</a>,
+		<a href="./DataSheets/DM74LS74A_National%20Semiconductor.pdf">National Semiconductor DM74LS74A</a>,
+		<a href="./DataSheets/HD74LS74A_Hitachi.pdf">Hitachi HD74LS74A</a>,
+		<a href="./DataSheets/DM74LS74A_Farchild%20Semiconductors.pdf">Farchild Semiconductors DM74LS74A</a>,
+		<a href="./DataSheets/SN74LS74A_Motorola.pdf">Motorola SN74LS74A</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Микросхемы: комбинаторная логика</div></td></tr>
+
+<tr id="U37_38_39">
+	<td style="white-space: nowrap;">
+		<a href="./boards.html#U37">U37</a>,
+		<a href="./boards.html#U38">U38</a>,
+		<a href="./boards.html#U39">U39</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74AHCT32_Texas%20Instruments.pdf">Texas Instruments SN74AHCT32N</a>
+	</td>
+	<td>
+		4 логических элемента 2ИЛИ
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U40_41">
+	<td>
+		<a href="./boards.html#U40">U40</a>,
+		<a href="./boards.html#U41">U41</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT30_Texas%20Instruments.pdf">Texas Instruments CD74HCT30E</a>
+	</td>
+	<td>
+		Логический элемент 8И-НЕ
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U42">
+	<td>
+		<a href="./boards.html#U42">U42</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74LS07_Texas%20Instruments.pdf">Texas Instruments SN74LS07N</a>
+	</td>
+	<td>
+		6 буферных формирователей с открытым коллекторным выходом
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/SN7407_Texas%20Instruments.pdf">Texas Instruments SN7407N</a>
+	</td>
+</tr>
+<tr id="U43">
+	<td>
+		<a href="./boards.html#U43">U43</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74HCT04_Texas%20Instruments.pdf">Texas Instruments SN74HCT04N</a>
+	</td>
+	<td>
+		6 логических элементов НЕ
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT04_Texas%20Instruments.pdf">Texas Instruments CD74HCT04E</a>
+	</td>
+</tr>
+<tr id="U44">
+	<td>
+		<a href="./boards.html#U44">U44</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74AHCT02_Texas%20Instruments.pdf">Texas Instruments SN74AHCT02N</a>
+	</td>
+	<td>
+		4 логических элемента 2ИЛИ-НЕ
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT02_Texas%20Instruments.pdf">Texas Instruments CD74HCT02E</a>
+	</td>
+</tr>
+<tr id="U45">
+	<td>
+		<a href="./boards.html#U45">U45</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74HCT00_Texas%20Instruments.pdf">Texas Instruments SN74HCT00N</a>
+	</td>
+	<td>
+		4 логических элемента 2И-НЕ
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/CD74HCT00_Texas%20Instruments.pdf">Texas Instruments CD74HCT00E</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Микросхемы: цифро-аналоговые</div></td></tr>
+
+<tr id="U46">
+	<td>
+		<a href="./boards.html#U46">U46</a>
+	</td>
+	<td>
+		<a href="./DataSheets/ADM691A_Analog%20Devices.pdf">Analog Devices ADM691A</a>
+	</td>
+	<td>
+		Монитор напряжения питания
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/MAX690-MAX695_Maxim Intergated.pdf">Maxim Intergated MAX691CPE</a>,
+		<a href="./DataSheets/MAX69XA_MAX800_Maxim Integrated.pdf">Maxim Intergated MAX691ACPE</a>
+	</td>
+</tr>
+<tr id="U47">
+	<td>
+		<a href="./boards.html#U47">U47</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CXA1645_Sony.pdf">Sony CXA1645P</a>
+	</td>
+	<td>
+		Энкодер PAL/NTSC
+	</td>
+	<td>
+		DIP-24 (400&nbsp;mil) в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+		Формирователь композитного видеосигнала для выхода <a href="#J3">J3</a>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="U48">
+	<td>
+		<a href="./boards.html#U48">U48</a>
+	</td>
+	<td>
+		<a href="./DataSheets/MCP6281_Microchip%20Technology.pdf">Microchip Technology MCP6281-E/P</a>
+	</td>
+	<td>
+		Операционный усислитель
+	</td>
+	<td>
+		DIP-8 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/OPA340_Texas%20Instruments.pdf">Texas Instruments OPA340PA</a>
+	</td>
+</tr>
+<tr id="U49">
+	<td>
+		<a href="./boards.html#U49">U49</a>
+	</td>
+	<td>
+		<a href="./DataSheets/LM311N_Texas%20Instruments.pdf">Texas Instruments LM311N</a>
+	</td>
+	<td>
+		Компаратор напряжений
+	</td>
+	<td>
+		DIP-8 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Конденсаторы</div></td></tr>
+
+<tr id="C1_58">
+	<td>
+		<a href="./boards.html#C1">C1</a>,
+		<a href="./boards.html#C2">C2</a>,
+		<a href="./boards.html#C3">C3</a>,
+		<a href="./boards.html#C4">C4</a>,
+		<a href="./boards.html#C5">C5</a>,
+		<a href="./boards.html#C6">C6</a>,
+		<a href="./boards.html#C7">C7</a>,
+		<a href="./boards.html#C8">C8</a>,
+		<a href="./boards.html#C9">C9</a>,
+		<a href="./boards.html#C10">C10</a>,
+		<a href="./boards.html#C11">C11</a>,
+		<a href="./boards.html#C12">C12</a>,
+		<a href="./boards.html#C13">C13</a>,
+		<a href="./boards.html#C14">C14</a>,
+		<a href="./boards.html#C15">C15</a>,
+		<a href="./boards.html#C16">C16</a>,
+		<a href="./boards.html#C17">C17</a>,
+		<a href="./boards.html#C18">C18</a>,
+		<a href="./boards.html#C19">C19</a>,
+		<a href="./boards.html#C20">C20</a>,
+		<a href="./boards.html#C21">C21</a>,
+		<a href="./boards.html#C22">C22</a>,
+		<a href="./boards.html#C23">C23</a>,
+		<a href="./boards.html#C24">C24</a>,
+		<a href="./boards.html#C25">C25</a>,
+		<a href="./boards.html#C26">C26</a>,
+		<a href="./boards.html#C27">C27</a>,
+		<a href="./boards.html#C28">C28</a>,
+		<a href="./boards.html#C29">C29</a>,
+		<a href="./boards.html#C30">C30</a>,
+		<a href="./boards.html#C31">C31</a>,
+		<a href="./boards.html#C32">C32</a>,
+		<a href="./boards.html#C33">C33</a>,
+		<a href="./boards.html#C34">C34</a>,
+		<a href="./boards.html#C35">C35</a>,
+		<a href="./boards.html#C36">C36</a>,
+		<a href="./boards.html#C37">C37</a>,
+		<a href="./boards.html#C38">C38</a>,
+		<a href="./boards.html#C39">C39</a>,
+		<a href="./boards.html#C40">C40</a>,
+		<a href="./boards.html#C41">C41</a>,
+		<a href="./boards.html#C42">C42</a>,
+		<a href="./boards.html#C43">C43</a>,
+		<a href="./boards.html#C44">C44</a>,
+		<a href="./boards.html#C45">C45</a>,
+		<a href="./boards.html#C46">C46</a>,
+		<a href="./boards.html#C47">C47</a>,
+		<a href="./boards.html#C48">C48</a>,
+		<a href="./boards.html#C49">C49</a>,
+		<a href="./boards.html#C50">C50</a>,
+		<a href="./boards.html#C51">C51</a>,
+		<a href="./boards.html#C52">C52</a>,
+		<a href="./boards.html#C53">C53</a>,
+		<a href="./boards.html#C54">C54</a>,
+		<a href="./boards.html#C55">C55</a>,
+		<a href="./boards.html#C56">C56</a>,
+		<a href="./boards.html#C57">C57</a>,
+		<a href="./boards.html#C58">C58</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_K_Series_Vishay.pdf">Vishay K104K15X7RF53H5</a>
+	</td>
+	<td>
+		Многослойный керамический конденсатор 0.1&nbsp;мкФ, 50&nbsp;В, диэлектрик X7R, допуск&nbsp;&plusmn;10%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C68_70">
+	<td>
+		<a href="./boards.html#C68">C68</a>,
+		<a href="./boards.html#C69">C69</a>,
+		<a href="./boards.html#C70">C70</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28X5R1E106MR00</a>
+	<td>
+		Многослойный керамический конденсатор 10&nbsp;мкФ, 25&nbsp;В, диэлектрик X5R, допуск&nbsp;&plusmn;20%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C59_64">
+	<td>
+		<a href="./boards.html#C59">C59</a>,
+		<a href="./boards.html#C60">C60</a>,
+		<a href="./boards.html#C61">C61</a>,
+		<a href="./boards.html#C62">C62</a>,
+		<a href="./boards.html#C63">C63</a>,
+		<a href="./boards.html#C64">C64</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Aluminium_Electrolytic_UBW_Series_Nichicon.pdf">Nichicon UBW1E221MPD<a></td>
+	<td>
+		Алюминиевый электролитический конденсатор 220&nbsp;мкФ, 25&nbsp;В, допуск&nbsp;&plusmn;20%, цилиндрический корпус диаметром 10&nbsp;мм, длиной 12.5&nbsp;мм, расстояние между выводами 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C65_67">
+	<td>
+		<a href="./boards.html#C65">C65</a>,
+		<a href="./boards.html#C66">C66</a>,
+		<a href="./boards.html#C67">C67</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Aluminium_Polymer_A750_Series_Kemet.pdf">Kemet A750EK107M1CAAE018</td>
+	<td>
+		Алюминиевый полимерный конденсатор 100&nbsp;мкФ, 16&nbsp;В, допуск&nbsp;&plusmn;20%, цилиндрический корпус диаметром 6.3&nbsp;мм, длиной 8&nbsp;мм, расстояние между выводами 2.5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+
+<tr id="C71_77">
+	<td>
+		<a href="./boards.html#C71">C71</a>,
+		<a href="./boards.html#C72">C72</a>,
+		<a href="./boards.html#C73">C73</a>,
+		<a href="./boards.html#C74">C74</a>,
+		<a href="./boards.html#C75">C75</a>,
+		<a href="./boards.html#C76">C76</a>,
+		<a href="./boards.html#C77">C77</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Aluminium_Electrolytic_FR_Series_Type_A_Panasonic.pdf">Panasonic EEUFR1H100</a></td>
+	<td>
+		Алюминиевый электролитический конденсатор 10&nbsp;мкФ, 50&nbsp;В, допуск&nbsp;&plusmn;20%, цилиндрический корпус диаметром 5&nbsp;мм, длиной 11&nbsp;мм, расстояние между выводами 2&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+
+<tr id="C78">
+	<td>
+		<a href="./boards.html#C78">C78</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Aluminium_Electrolytic_WCAP-ATG5_Wurth%20Elektronik.pdf">Wurth Elektronik 860020672005</a></td>
+	<td>
+		Алюминиевый электролитический конденсатор 1&nbsp;мкФ, 50&nbsp;В, допуск&nbsp;&plusmn;20%, цилиндрический корпус диаметром 5&nbsp;мм, длиной 11&nbsp;мм, расстояние между выводами 2&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C79_80">
+	<td>
+		<a href="./boards.html#C79">C79</a>,
+		<a href="./boards.html#C80">C80</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28X7R1H223KNT0</a>
+	<td>
+		Многослойный керамический конденсатор 22&nbsp;нФ, 50&nbsp;В, диэлектрик X7R, допуск&nbsp;&plusmn;10%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C81">
+	<td>
+		<a href="./boards.html#C81">C81</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H152JNT0</a>
+	<td>
+		Многослойный керамический конденсатор 1.5&nbsp;нФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C82_84">
+	<td>
+		<a href="./boards.html#C82">C82</a>,
+		<a href="./boards.html#C83">C83</a>,
+		<a href="./boards.html#C84">C84</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H331JNT0</a>
+	<td>
+		Многослойный керамический конденсатор 330&nbsp;пФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C85">
+	<td>
+		<a href="./boards.html#C85">C85</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H470JNT0</a>
+	<td>
+		Многослойный керамический конденсатор 47&nbsp;пФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C86_87">
+	<td>
+		<a href="./boards.html#C86">C86</a>,
+		<a href="./boards.html#C87">C87</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H330JNT0</a>
+	<td>
+		Многослойный керамический конденсатор 33&nbsp;пФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C88_90">
+	<td>
+		<a href="./boards.html#C88">C88</a>,
+		<a href="./boards.html#C89">C89</a>,
+		<a href="./boards.html#C90">C90</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Trimmer_GKG_Series_EW Electronics.pdf">EW Electronics GKG30015-ND</a>,
+		возможна установка постоянного конденсатора <a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G2A270JNT0</a>
+	</td>
+	<td>
+		Керамический подстроечный конденсатор 6.5 ... 30&nbsp;пФ (зелёный), 100&nbsp;В, расстояние между выводами 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Подстроечные конденсаторы кврарцевых резонаторов
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_Trimmer_TZ03_muRata.pdf">muRata TZ03R300ER169</a>
+	</td>
+</tr>
+
+<tr id="C91">
+	<td>
+		<a href="./boards.html#C91">C91</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G2A270JNT0</a> для NTSC,
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G2A180JNT0</a> для PAL
+	</td>
+	<td>
+		многослойный керамический конденсатор
+		27&nbsp;пФ, 100&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм для NTSC или
+		18&nbsp;пФ, 100&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм для PAL
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C92_93">
+	<td>
+		<a href="./boards.html#C92">C92</a>,
+		<a href="./boards.html#C93">C93</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H220JNT0</a>
+	<td>
+		Многослойный керамический конденсатор 22&nbsp;пФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;5%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="C94">
+	<td>
+		<a href="./boards.html#C94">C94</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28C0G1H4R7CNT0</a>
+	<td>
+		Многослойный керамический конденсатор 4.7&nbsp;пФ, 50&nbsp;В, диэлектрик C0G, допуск&nbsp;&plusmn;0.25&nbsp;пФ, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Резисторные сборки</div></td></tr>
+
+<tr id="RR1_4">
+	<td>
+		<a href="./boards.html#RR1">RR1</a>,
+		<a href="./boards.html#RR2">RR2</a>,
+		<a href="./boards.html#RR3">RR3</a>,
+		<a href="./boards.html#RR4">RR4</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4610X-AP1-103LF</a>
+	</td>
+	<td>
+		Резисторная сборка из девяти резисторов 10&nbsp;кОм с общим выводом 
+	</td>
+	<td>
+		SIP-10
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="RR5_7">
+	<td>
+		<a href="./boards.html#RR5">RR5</a>,
+		<a href="./boards.html#RR6">RR6</a>,
+		<a href="./boards.html#RR7">RR7</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4610X-AP1-472LF</a>
+	</td>
+	<td>
+		Резисторная сборка из девяти резисторов 4.7&nbsp;кОм с общим выводом 
+	</td>
+	<td>
+		SIP-10
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>	
+	</td>
+</tr>
+
+<tr id="RR8_10">
+	<td>
+		<a href="./boards.html#RR8">RR8</a>,
+		<a href="./boards.html#RR10">RR10</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-472LF</a></td>
+	<td>
+		Резисторная сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом 
+	</td>
+	<td>
+		SIP-6
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="RR9">
+	<td>
+		<a href="./boards.html#RR9">RR9</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-471LF</a></td>
+	<td>
+		Резисторная сборка из пяти резисторов 470&nbsp;Ом с общим выводом 
+	</td>
+	<td>
+		SIP-6
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+
+<tr><td colspan="7"><div class="bom_class">Резисторы</div></td></tr>
+
+<tr id="R1">
+	<td>
+		<a href="./boards.html#R1">R1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-1M</a></td>
+	<td>
+		 Металлоплёночный резистор 1&nbsp;МОм, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;1%, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Yageo MFP, MFR от АО «Ресурс» (Россия) aoresurs.com, MF-25 ???,  отечественная серия С2-23
+	</td>
+</tr>
+
+<tr id="R2_3">
+	<td>
+		<a href="./boards.html#R2">R2</a>,
+		<a href="./boards.html#R3">R3</a>
+	</td>
+	<td>	<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-470K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 470&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R4">
+	<td>
+		<a href="./boards.html#R4">R4</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-220K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 220&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R5_6">
+	<td>
+		<a href="./boards.html#R5">R5</a>,
+		<a href="./boards.html#R6">R6</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-100K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 100&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R7_8">
+	<td>
+		<a href="./boards.html#R7">R7</a>,
+		<a href="./boards.html#R8">R8</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-47K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 47&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R9">
+	<td>
+		<a href="./boards.html#R9">R9</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-20K</a> для NTSC,
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-16K</a> для PAL,
+	</td>
+	<td>
+		Металлоплёночный резистор
+		20&nbsp;кОм, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;не хуже 1%, осевые выводы для NTSC или
+		16&nbsp;кОм, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;не хуже 1%, осевые выводы для PAL
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R10">
+	<td>
+		<a href="./boards.html#R10">R10</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-20K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 20&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R11_14">
+	<td>
+		<a href="./boards.html#R11">R11</a>,
+		<a href="./boards.html#R12">R12</a>,
+		<a href="./boards.html#R13">R13</a>,
+		<a href="./boards.html#R14">R14</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-10K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 10&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R15">
+	<td>
+		<a href="./boards.html#R15">R15</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-5K6</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 5.6&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R16_22">
+	<td>
+		<a href="./boards.html#R16">R16</a>,
+		<a href="./boards.html#R17">R17</a>,
+		<a href="./boards.html#R18">R18</a>,
+		<a href="./boards.html#R19">R19</a>,
+		<a href="./boards.html#R20">R20</a>,
+		<a href="./boards.html#R21">R21</a>,
+		<a href="./boards.html#R22">R22</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-4K7</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 4.7&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R23_24">
+	<td>
+		<a href="./boards.html#R23">R23</a>,
+		<a href="./boards.html#R24">R24</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-2K7</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 2.7&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R25_26">
+	<td>
+		<a href="./boards.html#R25">R25</a>,
+		<a href="./boards.html#R26">R26</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-2K2</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 2.2&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R27_33">
+	<td>
+		<a href="./boards.html#R27">R27</a>,
+		<a href="./boards.html#R28">R28</a>,
+		<a href="./boards.html#R29">R29</a>,
+		<a href="./boards.html#R30">R30</a>,
+		<a href="./boards.html#R31">R31</a>,
+		<a href="./boards.html#R32">R32</a>,
+		<a href="./boards.html#R33">R33</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-1K</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 1&nbsp;кОм, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R34">
+	<td>
+		<a href="./boards.html#R34">R34</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-470R</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 470&nbsp;Ом, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R35">
+	<td>
+		<a href="./boards.html#R35">R35</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-180R</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 180&nbsp;Ом, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R36">
+	<td>
+		<a href="./boards.html#R36">R36</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-120R</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 120&nbsp;Ом, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R37_42">
+	<td>
+		<a href="./boards.html#R37">R37</a>
+		<a href="./boards.html#R38">R38</a>
+		<a href="./boards.html#R39">R39</a>
+		<a href="./boards.html#R40">R40</a>
+		<a href="./boards.html#R41">R41</a>
+		<a href="./boards.html#R42">R42</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-100R</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 100&nbsp;Ом, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="R43_48">
+	<td>
+		<a href="./boards.html#R43">R43</a>,
+		<a href="./boards.html#R44">R44</a>,
+		<a href="./boards.html#R45">R45</a>,
+		<a href="./boards.html#R46">R46</a>,
+		<a href="./boards.html#R47">R47</a>,
+		<a href="./boards.html#R48">R48</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-75R</a>
+	</td>
+	<td>
+		Металлоплёночный резистор 75&nbsp;Ом, 0.25&nbsp;Вт, осевые выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Реле</div></td></tr>
+
+<tr id="RY1">
+	<td>
+		<a href="./boards.html#RY1">RY1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/G5V-1_Omron%20Corporation.pdf">Omron G5V-1-DC5</a>
+	</td>
+	<td>
+		реле 5 В
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/G5V-1_Omron%20Corporation.pdf">Omron G5V-1-T90-DC5</a>,
+		 <a href="./DataSheets/HFD23_Hongfa.pdf">Hongfa HFD23/05-1ZP</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Индуктивности</div></td></tr>
+
+<tr id="L1">
+	<td>
+		<a href="./boards.html#L1">L1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Inductor_78F_Series_Bourns.pdf">78F680J-RC</a>
+	</td>
+	<td>
+		Индуктивность 68&nbsp;мкГн &plusmn;5%, цилиндрическая с осевыми выводами
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+<tr id="L2_3">
+	<td>
+		<a href="./boards.html#L2">L2</a>,
+		<a href="./boards.html#L3">L3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Inductor_78F_Series_Bourns.pdf">78F5R6J-RC</a>
+	</td>
+	<td>
+		Индуктивность 5.6&nbsp;мкГн &plusmn;5%, цилиндрическая с осевыми выводами
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Диоды</div></td></tr>
+
+<tr id="D1">
+	<td>
+		<a href="./boards.html#D1">D1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/1N4148_Philips%20Semiconductors.pdf">Philips 1N4148</a>
+	</td>
+	<td>
+		Быстродействующий импульсный кремниевый диод общего назначения
+	</td>
+	<td>
+		DO-35 (SOD-27)
+	</td>
+	<td>
+	</td>
+	<td>
+		Защита транзистора от ЭДС в обмотке рэле <a href="#RY1">RY1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/1N4148_Vishay%20Semiconductors.pdf">Vishay 1N4148</a>,
+		<a href="./DataSheets/КД522Б.pdf">КД522Б</a>
+	</td>
+</tr>
+
+
+<tr><td colspan="7"><div class="bom_class">Транзисторы</div></td></tr>
+
+<tr id="Q1_2">
+	<td>
+		<a href="./boards.html#Q1">Q1</a>,
+		<a href="./boards.html#Q2">Q2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/2907A_Fairchild%20Semiconductor.pdf">Fairchild Semiconductor PN2907A</a>
+	</td>
+	<td>
+		Маломощный биполярный усилительный PNP транзистор
+	</td>
+	<td>
+		TO-92
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Кварцевые резонаторы</div></td></tr>
+
+<tr id="Y1">
+	<td>
+		<a href="./boards.html#Y1">Y1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Oscillator_HC-49US_Citizen.pdf">HC-49/U-S21477270ABJB</a>
+	</td>
+	<td>
+		Кварцевый резонатор 21.477270&nbsp;МГц
+	</td>
+	<td>
+		HC-49US
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="Y2">
+	<td>
+		<a href="./boards.html#Y2">Y2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Oscillator_AB38T_Abracon.pdf">AB38T-32.768KHZ</a>
+	</td>
+	<td>
+		Кварцевый резонатор 32768&nbsp;Гц
+	</td>
+	<td>
+		SD-38 (цилиндрический длиной 8.3&nbsp;мм, диаметром 3.2&nbsp;мм)
+	</td>
+	<td>
+	</td>
+	<td>
+		Генерация импульсов для часов реального времени
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="Y3">
+	<td>
+		<a href="./boards.html#Y3">Y3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Oscillator_HC-49USX_ESC Inc.pdf">ECS-44-20-4X</a>
+	</td>
+	<td>
+		Кварцевый резонатор 4.433618&nbsp;МГц
+	</td>
+	<td>
+		HC-49S
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Предохранители</div></td></tr>
+
+
+<tr id="F1">
+	<td>
+		<a href="./boards.html#F1">F1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Fuse_RXEF_Series_Littelfuse.pdf">RUSBF075-2</a>
+	</td>
+	<td>
+		Восстанавливающийся предохранитель 750&nbsp;мА, радиальные выводы
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Предохранитель в цепи питания джойстиков
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Разъёмы</div></td></tr>
+
+
+<tr id="J1">
+	<td>
+		<a href="./boards.html#J1">J1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_KLDX_Series_Kycon.pdf">KLDX-0202-A</a>
+	</td>
+	<td>
+		Трёхконтактное цилиндрическое гнездо диаметром 5.7&nbsp;мм,
+		центральный штырёк 2.0&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Вход для подключения пятивольтового питающего напряжения
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J2">
+	<td>
+		<a href="./boards.html#J2">J2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_RCJ-01_Series_Same%20Sky.pdf">Same Sky RCJ-013</a>
+	</td>
+	<td>
+		RCA белый
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Выход звука
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_161-03X0-E_Cobiconn.pdf">Cobiconn 161-0360-E</a>,
+		<a href="./DataSheets/Connector-RCA_Keystone%20Electronics%20Corp.pdf">Keystone Electronics Corp 936</a>
+	</td>
+</tr>
+
+<tr id="J3">
+	<td>
+		<a href="./boards.html#J3">J3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_RCJ-01_Series_Same%20Sky.pdf">Same Sky RCJ-014</a>
+	</td>
+	<td>
+		RCA жёлтый
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		 Выход композитного видеосигнала
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_161-03X0-E_Cobiconn.pdf">Cobiconn 161-0380-E</a>,
+		<a href="./DataSheets/Connector-RCA_Keystone%20Electronics%20Corp.pdf">Keystone Electronics Corp 938</a>
+	</td>
+</tr>
+
+<tr id="J4">
+	<td>
+		<a href="./boards.html#J4">J4</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_MD-SM_Series_Same%20Sky.pdf">Same Sky MD-40SM</a>
+	</td>
+	<td>
+		Четырёхконтактное гнездо Mini DIN, правое угловое, для монтажа на печатную плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Выход видео- и синхросигнала (S-видео)
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_MD-SM_Series_CUI%20Inc.pdf">CUI Inc MD-40SM</a>
+	</td>
+</tr>
+
+<tr id="J5">
+	<td>
+		<a href="./boards.html#J5">J5</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_SDF-J_Series_Same%20Sky.pdf">Same Sky SDF-80J</a>
+	</td>
+	<td>
+		Восьмиконтактное гнездо DIN, правое угловое, для монтажа на печатную плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		 Выход компонентного (RGB) видеосигнала
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_SDF-J_Series_CUI%20Devices.pdf">CUI Devices SDF-80J</a>
+	</td>
+</tr>
+
+<tr id="J6">
+	<td>
+		<a href="./boards.html#J6">J6</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_SDF-J_Series_Same%20Sky.pdf">Same Sky SDF-80J</a>
+	</td>
+	<td>
+		Восьмиконтактное гнездо DIN, правое угловое, для монтажа на печатную плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Выход для подключения магнитофона
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_SDF-J_Series_CUI%20Devices.pdf">CUI Devices SDF-80J</a>
+	</td>
+</tr>
+
+<tr id="J7_8">
+	<td>
+		<a href="./boards.html#J7">J7</a>,
+		<a href="./boards.html#J8">J8</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_L717SDXXXP1ACH3R_Amphenol.pdf">Amphenol L717SDE09P1ACH3R</a>
+	</td>
+	<td>
+		 DB-9M правый угловой на плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		 Выходы для подключения джойстиков
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J9">
+	<td>
+		<a href="./boards.html#J9">J9</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_112_YYY_213RYY1_NorComp.pdf">NorComp 112-014-213R001</a>
+	</td>
+	<td>
+		CENR-14F правый угловой на плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		 Выход для подключения принтера
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J10">
+	<td>
+		<a href="./boards.html#J10">J10</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_640456_TE%20Connectivity.pdf">TE Connectivity 6404568</a>
+	</td>
+	<td>
+		Разъём VH, шаг 3.96 мм, 8 PIN
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Вход для подключения пятивольтового и двуполярного двенадцативольтового напряжений питания
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J11">
+	<td>
+		<a href="./boards.html#J11">J11</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_61201621621_Wurth%20Elektronik.pdf">Wurth Elektronik 61201621621</a>
+	</td>
+	<td>
+		Разъём типа BH-16
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъём для подключения платы клавиатуры (через шлейф или напрямую)
+	</td>
+	<td>
+	</td>
+</tr>
+
+
+<tr id="J12">
+	<td>
+		<a href="./boards.html#J12">J12</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_929_Series_TS-815-E_3M.pdf">3M 929852-01-20-RB</a>
+	</td>
+	<td>
+		Сдвоенная гребёнка 2 ряда по 20 гнёзд
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъём для подключения платы расширения оперативной памяти
+
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J13">
+	<td>
+		<a href="./boards.html#J13">J13</a>
+	</td>
+	<td>
+		PLD-4
+	</td>
+	<td>
+		Сдвоенная гребёнка 2 ряда по 2 штырька
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъём с сигналами RESET и NMI
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="J14">
+	<td>
+		<a href="./boards.html#J14">J14</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_69190_Amphenol%20FCI.pdf">Amphenol FCI 78229-113H</a>
+	</td>
+	<td>
+		Гребёнка 13 штырьков
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъём с сигналами шины Color Bus
+	</td>
+	<td>
+		PLS-13
+	</td>
+</tr>
+
+<tr id="SLOT1_2">
+	<td>
+		<a href="./boards.html#SLOT1">SLOT1</a>,
+		<a href="./boards.html#SLOT2">SLOT2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_5530843_TE Connectivity.pdf">TE Connectivity 5530843-5</a>
+	</td>
+	<td>
+		Краевой разъём-гнездо 50 контактов
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъёмы для подключения картриджей
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="BT1">
+	<td>
+		<a href="./boards.html#BT1">BT1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_CR2032_Eagle.pdf">Eagle 2420-GR</a>
+	</td>
+	<td>
+		Панель для установки элемента питания CR2032
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Подключение элемента питания для обеспечения энергонезависимости часов реального времени
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Перемычки</div></td></tr>
+
+<tr id="JP1_2">
+	<td>
+		<a href="./boards.html#JP1">JP1</a>,
+		<a href="./boards.html#JP2">JP2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_69190_Amphenol%20FCI.pdf">Amphenol FCI 78229-102H</a>
+	</td>
+	<td>
+		Гребёнка 2 штырька
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Установка съёмных перемычек
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="JP3_6">
+	<td>
+		<a href="./boards.html#JP3">JP3</a>,
+		<a href="./boards.html#JP4">JP4</a>,
+		<a href="./boards.html#JP5">JP5</a>,
+		<a href="./boards.html#JP6">JP6</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_69190_Amphenol%20FCI.pdf">Amphenol FCI 78229-103H</a>
+	</td>
+	<td>
+		Гребёнка 3 штырька
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Установка съёмных перемычек
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="JP7_8">
+	<td>
+		<a href="./boards.html#JP7">JP7</a>,
+		<a href="./boards.html#JP8">JP8</a>
+	</td>
+	<td>
+		PLD-6
+	</td>
+	<td>
+		Сдвоенная гребёнка 2 ряда по 3 штырька
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Установка съёмных перемычек
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_board">Плата клавиатуры</div></td></tr>
+<tr><td colspan="7"><div class="bom_class">Микросхемы: комбинаторная логика</div></td></tr>
+
+<tr id="kU1">
+	<td>
+		<a href="./boards.html#kU1">U1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74LS145_Texas%20Instruments.pdf">Texas Instruments SN74LS145N</a>
+	</td>
+	<td>
+		Двоично-десятичный дешифратор
+	</td>
+	<td>
+		DIP-16 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/HD74LS145_Hitachi.pdf">Hitachi HD74LS145</a>
+	</td>
+</tr>
+<tr id="kU2">
+	<td>
+		<a href="./boards.html#kU2">U2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/SN74LS07_Texas%20Instruments.pdf">Texas Instruments SN74LS07N</a>
+	</td>
+	<td>
+		6 буферных формирователей с открытым коллекторным выходом
+	</td>
+	<td>
+		DIP-14 в панельке
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Светодиоды</div></td></tr>
+
+<tr id="kD1">
+	<td>
+		<a href="./boards.html#kD1">D1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/LED_VAOL-3HDE4_VCC%20Optoelectronics.pdf">VCC Optoelectronics VAOL-3HDE4</a>
+	</td>
+	<td>
+		3&nbsp;мм цилиндрический зелёный светодиод
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Индикатор питания
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="kD2">
+	<td>
+		<a href="./boards.html#kD2">D2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/LED_VAOL-3HCE4_VCC%20Optoelectronics.pdf">VCC Optoelectronics VAOL-3HCE4</a>
+	</td>
+	<td>
+		3&nbsp;мм цилиндрический жёлтый светодиод
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Индикатор режима CapsLock
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="kD3">
+	<td>
+		<a href="./boards.html#kD3">D3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/LED_VAOL-3HAE4_VCC%20Optoelectronics.pdf">VCC Optoelectronics VAOL-3HAE4</a>
+	</td>
+	<td>
+		3&nbsp;мм цилиндрический красный светодиод
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Индикатор режима Code или Kana
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Диоды</div></td></tr>
+
+<tr id="kD4_6">
+	<td>
+		<a href="./boards.html#kD4">D4</a>,
+		<a href="./boards.html#kD5">D5</a>,
+		<a href="./boards.html#kD6">D6</a>
+	</td>
+	<td><a href="./DataSheets/1N4148_Philips%20Semiconductors.pdf">Philips 1N4148</a></td>
+	<td>
+		Быстродействующий импульсный кремниевый диод общего назначения
+	</td>
+	<td>
+		DO-35 (SOD-27)
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/1N4148_Vishay Semiconductors.pdf">Vishay 1N4148</a>,
+		<a href="./DataSheets/КД522Б.pdf">КД522Б</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Резисторы</div></td></tr>
+
+<tr id="kR1_3">
+	<td>
+		<a href="./boards.html#kR1">R1</a>,
+		<a href="./boards.html#kR2">R2</a>,
+		<a href="./boards.html#kR3">R3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Carbon_Film_CF_RC_Series_Xicon.pdf">Xicon 291-470-RC </a>
+	</td>
+	<td>
+		Резистор из углеродной плёнки 470&nbsp;Ом, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;5%
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Токоограничительные резисторы для светодиодов <a href="kD1">D1</a>, <a href="kD2">D2</a>, <a href="kD3">D3</a>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="kRN1">
+	<td>
+		<a href="./boards.html#kRN1">RN1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_SIP-RC_Series_Xicon.pdf">Xicon 264-4.7K-RC</a>
+	</td>
+	<td>
+		Резисторная сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом
+	</td>
+	<td>
+		SIP-6
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-472LF</a>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Ёмкости</div></td></tr>
+
+<tr id="kC1_C2">
+	<td>
+		<a href="./boards.html#kC1">C1</a>,
+		<a href="./boards.html#kC2">C2</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_K_Series_Vishay.pdf">Vishay K104K15X7RF53H5</a>
+	</td>
+	<td>
+		Многослойный керамический конденсатор 0.1&nbsp;мкФ, 50&nbsp;В, диэлектрик X7R, допуск&nbsp;&plusmn;10%, радиальные выводы 5&nbsp;мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Развязывающий конденсатор для микросхем <a href="kU1">U1</a> и <a href="kU1">U2</a>
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="kC3">
+	<td>
+		<a href="./boards.html#kC3">C3</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Capacitor_MLCC_FG_Series_TDK.pdf">TDK FG28X5R1E106MR00</a>
+	<td>
+		Многослойный керамический конденсатор 10&nbsp;мкФ, 25&nbsp;В, допуск&nbsp;&plusmn;20%, радиальные выводы 5 мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Развязывающий конденсатор для платы клавиатуры
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr><td colspan="7"><div class="bom_class">Разъёмы</div></td></tr>
+
+<tr id="kJ1">
+	<td>
+		<a href="./boards.html#kJ1">J1</a>
+	</td>
+	<td>
+		<a href="./DataSheets/Connector_61201621721_Wurth%20Elektronik.pdf">Wurth Elektronik 61201621721</a> для подключения шлейфа или
+		<a href="./DataSheets/Connector_ESW_ESQ_Series_Samtec.pdf">Samtec ESQ-108-12-L-D</a> для непосредственного подключения платы клавиатуры
+	</td>
+	<td>
+		Разъём BH-16 правый угловой, или высокие двухрядные гнёзда, шаг 2.54 мм
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Разъём для подключения к системной плате шлейфом или непосредственно
+	</td>
+	<td>
+	</td>
+</tr>
+
+
+<tr><td colspan="7"><div class="bom_class">Кнопки</div></td></tr>
+
+<tr id="kSW1-SW64_SW66-SW73">
+	<td>
+		<a href="./boards.html#kSW1">SW1</a>,
+		<a href="./boards.html#kSW2">SW2</a>,
+		<a href="./boards.html#kSW3">SW3</a>,
+		<a href="./boards.html#kSW4">SW4</a>,
+		<a href="./boards.html#kSW5">SW5</a>,
+		<a href="./boards.html#kSW6">SW6</a>,
+		<a href="./boards.html#kSW7">SW7</a>,
+		<a href="./boards.html#kSW8">SW8</a>,
+		<a href="./boards.html#kSW9">SW9</a>,
+		<a href="./boards.html#kSW10">SW10</a>,
+		<a href="./boards.html#kSW11">SW11</a>,
+		<a href="./boards.html#kSW12">SW12</a>,
+		<a href="./boards.html#kSW13">SW13</a>,
+		<a href="./boards.html#kSW14">SW14</a>,
+		<a href="./boards.html#kSW15">SW15</a>,
+		<a href="./boards.html#kSW16">SW16</a>,
+		<a href="./boards.html#kSW17">SW17</a>,
+		<a href="./boards.html#kSW18">SW18</a>,
+		<a href="./boards.html#kSW19">SW19</a>,
+		<a href="./boards.html#kSW20">SW20</a>,
+		<a href="./boards.html#kSW21">SW21</a>,
+		<a href="./boards.html#kSW22">SW22</a>,
+		<a href="./boards.html#kSW23">SW23</a>,
+		<a href="./boards.html#kSW24">SW24</a>,
+		<a href="./boards.html#kSW25">SW25</a>,
+		<a href="./boards.html#kSW26">SW26</a>,
+		<a href="./boards.html#kSW27">SW27</a>,
+		<a href="./boards.html#kSW28">SW28</a>,
+		<a href="./boards.html#kSW29">SW29</a>,
+		<a href="./boards.html#kSW30">SW30</a>,
+		<a href="./boards.html#kSW31">SW31</a>,
+		<a href="./boards.html#kSW32">SW32</a>,
+		<a href="./boards.html#kSW33">SW33</a>,
+		<a href="./boards.html#kSW34">SW34</a>,
+		<a href="./boards.html#kSW35">SW35</a>,
+		<a href="./boards.html#kSW36">SW36</a>,
+		<a href="./boards.html#kSW37">SW37</a>,
+		<a href="./boards.html#kSW38">SW38</a>,
+		<a href="./boards.html#kSW39">SW39</a>,
+		<a href="./boards.html#kSW40">SW40</a>,
+		<a href="./boards.html#kSW41">SW41</a>,
+		<a href="./boards.html#kSW42">SW42</a>,
+		<a href="./boards.html#kSW43">SW43</a>,
+		<a href="./boards.html#kSW44">SW44</a>,
+		<a href="./boards.html#kSW45">SW45</a>,
+		<a href="./boards.html#kSW46">SW46</a>,
+		<a href="./boards.html#kSW47">SW47</a>,
+		<a href="./boards.html#kSW48">SW48</a>,
+		<a href="./boards.html#kSW49">SW49</a>,
+		<a href="./boards.html#kSW50">SW50</a>,
+		<a href="./boards.html#kSW51">SW51</a>,
+		<a href="./boards.html#kSW52">SW52</a>,
+		<a href="./boards.html#kSW53">SW53</a>,
+		<a href="./boards.html#kSW54">SW54</a>,
+		<a href="./boards.html#kSW55">SW55</a>,
+		<a href="./boards.html#kSW56">SW56</a>,
+		<a href="./boards.html#kSW57">SW57</a>,
+		<a href="./boards.html#kSW58">SW58</a>,
+		<a href="./boards.html#kSW59">SW59</a>,
+		<a href="./boards.html#kSW60">SW60</a>,
+		<a href="./boards.html#kSW61">SW60</a>,
+		<a href="./boards.html#kSW62">SW61</a>,
+		<a href="./boards.html#kSW63">SW63</a>,
+		<a href="./boards.html#kSW64">SW64</a>,
+		<a href="./boards.html#kSW66">SW66</a>,
+		<a href="./boards.html#kSW67">SW67</a>,
+		<a href="./boards.html#kSW68">SW68</a>,
+		<a href="./boards.html#kSW69">SW69</a>,
+		<a href="./boards.html#kSW70">SW70</a>,
+		<a href="./boards.html#kSW71">SW71</a>,
+		<a href="./boards.html#kSW72">SW72</a>,
+		<a href="./boards.html#kSW73">SW73</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CherryMX.pdf">MX Cherry MX1A-11NW</a>
+	</td>
+	<td>
+		Кнопка для клавиатуры, совместимая с MX Cherry,
+		линейная характеристика, для монтажа на печатную плату, с вырезом для
+		установки свктодиода
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Кнопка для всех клавиш, кроме "пробела"
+	</td>
+	<td>
+	</td>
+</tr>
+
+<tr id="kSW65">
+	<td>
+		<a href="./boards.html#kSW65">SW65</a>
+	</td>
+	<td>
+		<a href="./DataSheets/CherryMX.pdf">MX Cherry MX1A-21NW</a>
+	</td>
+	<td>
+		Кнопка для клавиатуры, совместимая с MX Cherry,
+		линейная характеристика с увеличенным усилием нажатия,
+		для монтажа на печатную плату
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+		Кнопка для клавиши "пробел"
+	</td>
+	<td>
+	</td>
+</tr>
+
+</tbody></table>
+
+</body>
+</html>
