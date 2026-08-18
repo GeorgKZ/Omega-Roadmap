@@ -3,7 +3,7 @@
 <title>Компоненты компьютера Омега</title>
 <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body style="max-width: 95%;">
 
 <a name="bom_table"></a>
 <table><thead>
@@ -29,7 +29,7 @@
 	<td>
 		<a href="./BomPics/U1_Z84C0006.png">
 			<img src="./BomPics/U1_Z84C0006.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Центральный процессор
@@ -57,6 +57,7 @@
 		</a>
 	</td>
 	<td>
+		Выбор первичного слота маппера, подключение клавиатуры, управление магнитофоном
 	</td>
 	<td>
 		<a href="./DataSheets/TMP82C55A_Toshiba%20Semiconductor.pdf">Toshiba TMP82C55A</a>,
@@ -104,7 +105,7 @@
 		</a>
 	</td>
 	<td>
-		Синтез звуков и мзыки
+		Синтез звуков и музыки, подключение джойстиков
 	</td>
 	<td>
 		<a href="./DataSheets/AY-3-8910_General%20Instrument.pdf">General Instrument AY-3-8910</a>
@@ -126,6 +127,7 @@
 	<td>
 	</td>
 	<td>
+		Обеспечение энергонезависимого отсчёта даты и времени
 	</td>
 	<td>
 	</td>
@@ -156,7 +158,7 @@
 	</td>
 	<td>
 		<a href="./DataSheets/SST39SF0X0_Microchip.pdf">Microchip SST39SF040</a>
-	 </td>
+	</td>
 </tr>
 <tr id="U7">
 	<td>
@@ -324,7 +326,7 @@
 <tr id="U25_26">
 	<td>
 		<a href="./boards.html#U25">U25</a>,
-	 	<a href="./boards.html#U26">U26</a>
+		<a href="./boards.html#U26">U26</a>
 	</td>
 	<td>
 		<a href="./DataSheets/SN74F245_Texas%20Instruments.pdf">Texas Instruments SN74F245N</a>
@@ -660,7 +662,7 @@
 		<a href="./DataSheets/MCP6281_Microchip%20Technology.pdf">Microchip Technology MCP6281-E/P</a>
 	</td>
 	<td>
-		Операционный усислитель
+		Операционный усилитель
 	</td>
 	<td>
 		DIP-8 в панельке
@@ -768,6 +770,14 @@
 	<td>
 	</td>
 	<td>
+		С1-C49 развязывающие конденсаторы микросхем U1-U49,
+		C50 развязывающий конденсатор и фильтр помех цепи питания энкодера PAL/NTSC <a href="#U47">U47</a>,
+		C51-С53 гальваническая развязка сигналов цветности R,G,B от видеопроцессора <a href="#U3">U3</a> к энкодеру PAL/NTSC <a href="#U47">U47</a>,
+		C54, C55 обвязка энкодера PAL/NTSC <a href="#U47">U47</a>,
+		C56 обвязка видеопроцессора <a href="#U3">U3</a>
+		C57 обвязка операционного усилителя, формирующего сигнал аудиовыхода,
+		C58 развязывающий конденсатор и фильтр помех цепи питания видеопроцессора <a href="#U3">U3</a>
+
 	</td>
 	<td>
 	</td>
@@ -789,6 +799,9 @@
 	<td>
 	</td>
 	<td>
+		C68 развязывающий конденсатор оперативной и постоянной памяти,
+		C69 развязывающий конденсатор и фильтр помех цепи питания энкодера PAL/NTSC <a href="#U47">U47</a>
+		C70 развязывающий конденсатор и фильтр помех цепи питания видеопроцессора <a href="#U3">U3</a>
 	</td>
 	<td>
 	</td>
@@ -813,6 +826,7 @@
 	<td>
 	</td>
 	<td>
+		Гальваническая развязка выходов компонентного и композитного видеосигналов
 	</td>
 	<td>
 	</td>
@@ -834,6 +848,10 @@
 	<td>
 	</td>
 	<td>
+		C65 развязывающий конденсатор по основному напряжению питания (VCC),
+		C66 развязывающий конденсатор по напряжению +12&nbsp;В (VDD),
+		C67 развязывающий конденсатор по напряжению -12&nbsp;В (VSS)
+
 	</td>
 	<td>
 	</td>
@@ -860,6 +878,10 @@
 	<td>
 	</td>
 	<td>
+		C71 обвязка операционного усилителя на входе магнитофонного сигнала,
+		C72-C75 гальваническая развязка объединения источников звуковых сигналов,
+		C76 гальваническая развязка аудиовыхода,
+		C77 обвязка энкодера PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -880,6 +902,7 @@
 	<td>
 	</td>
 	<td>
+		Гальваническая развязка выхода магнитофонного сигнала
 	</td>
 	<td>
 	</td>
@@ -900,6 +923,8 @@
 	<td>
 	</td>
 	<td>
+		C79 фильтр нижних частот выхода магнитофонного сигнала,<br>
+		C80 гальваническая развязка входа магнитофонного сигнала
 	</td>
 	<td>
 	</td>
@@ -919,6 +944,7 @@
 	<td>
 	</td>
 	<td>
+		Обвязка операционного усилителя, формирующего сигнал аудиовыхода
 	</td>
 	<td>
 	</td>
@@ -940,6 +966,7 @@
 	<td>
 	</td>
 	<td>
+		Фильтр нижних частот сигналов цветности R,G,B от видеопроцессора <a href="#U3">U3</a> к энкодеру PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -959,6 +986,7 @@
 	<td>
 	</td>
 	<td>
+		Фильтр нижних частот цепи синхросигнала на входе энкодера PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -979,6 +1007,7 @@
 	<td>
 	</td>
 	<td>
+		нагрузочные конденсаторы кварцевого резонатора <a href="#Y2">Y2</a> часов реального времени
 	</td>
 	<td>
 	</td>
@@ -1000,9 +1029,12 @@
 	<td>
 	</td>
 	<td>
+		<a href="./BomPics/C88_90_30pF.png">
+			<img src="./BomPics/C88_90_30pF.png" width="200"/>
+		</a>
 	</td>
 	<td>
-		Подстроечные конденсаторы кврарцевых резонаторов
+		Подстроечные конденсаторы кварцевых резонаторов <a href="#Y1">Y1</a>, <a href="#Y2">Y2</a>, <a href="#Y3">Y3</a>
 	</td>
 	<td>
 		<a href="./DataSheets/Capacitor_Trimmer_TZ03_muRata.pdf">muRata TZ03R300ER169</a>
@@ -1027,6 +1059,7 @@
 	<td>
 	</td>
 	<td>
+		Обвязка энкодера PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -1047,6 +1080,8 @@
 	<td>
 	</td>
 	<td>
+		C92 нагрузочный конденсатор кварцевого резонатора <a href="#Y1">Y1</a> для формирования тактовой частоты видеопроцессора <a href="#U3">U3</a>
+		C93 нагрузочный конденсатор кварцевого резонатора <a href="#Y3">Y3</a> для формирования поднесущей цветности видеосигнала в системе кодирования цветности PAL
 	</td>
 	<td>
 	</td>
@@ -1066,6 +1101,7 @@
 	<td>
 	</td>
 	<td>
+		Фильтр нижних частот на входе частоты поднесущей PAL энкодера PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -1084,7 +1120,7 @@
 		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4610X-AP1-103LF</a>
 	</td>
 	<td>
-		Резисторная сборка из девяти резисторов 10&nbsp;кОм с общим выводом 
+		Сборка из девяти резисторов 10&nbsp;кОм с общим выводом 
 	</td>
 	<td>
 		SIP-10
@@ -1092,7 +1128,7 @@
 	<td>
 		<a href="./BomPics/RR1_4_103_SIP10.png">
 			<img src="./BomPics/RR1_4_103_SIP10.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 	</td>
@@ -1110,7 +1146,7 @@
 		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4610X-AP1-472LF</a>
 	</td>
 	<td>
-		Резисторная сборка из девяти резисторов 4.7&nbsp;кОм с общим выводом 
+		Сборка из девяти резисторов 4.7&nbsp;кОм с общим выводом 
 	</td>
 	<td>
 		SIP-10
@@ -1118,7 +1154,7 @@
 	<td>
 		<a href="./BomPics/RR5_7_472_SIP10.png">
 			<img src="./BomPics/RR5_7_472_SIP10.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 	</td>
@@ -1134,7 +1170,7 @@
 	<td>
 		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-472LF</a></td>
 	<td>
-		Резисторная сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом 
+		Сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом 
 	</td>
 	<td>
 		SIP-6
@@ -1142,7 +1178,7 @@
 	<td>
 		<a href="./BomPics/RR8_10_472_SIP6.png">
 			<img src="./BomPics/RR8_10_472_SIP6.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 	</td>
@@ -1157,7 +1193,7 @@
 	<td>
 		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-471LF</a></td>
 	<td>
-		Резисторная сборка из пяти резисторов 470&nbsp;Ом с общим выводом 
+		Сборка из пяти резисторов 470&nbsp;Ом с общим выводом 
 	</td>
 	<td>
 		SIP-6
@@ -1165,7 +1201,7 @@
 	<td>
 		<a href="./BomPics/RR9_471_SIP6.png">
 			<img src="./BomPics/RR9_471_SIP6.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 	</td>
@@ -1183,7 +1219,7 @@
 	<td>
 		<a href="./DataSheets/Resistor_Metal_Film_MFR_Series_Yageo.pdf">Yageo MFR-25FBF52-1M</a></td>
 	<td>
-		 Металлоплёночный резистор 1&nbsp;МОм, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;1%, осевые выводы
+		Металлоплёночный резистор 1&nbsp;МОм, 0.25&nbsp;Вт, допуск&nbsp;&plusmn;1%, осевые выводы
 	</td>
 	<td>
 	</td>
@@ -1585,13 +1621,14 @@
 	<td>
 		<a href="./BomPics/RY1_G5V1.png">
 			<img src="./BomPics/RY1_G5V1.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
+		Включение &frasl; выключение мотора магнитофона
 	</td>
 	<td>
 		<a href="./DataSheets/G5V-1_Omron%20Corporation.pdf">Omron G5V-1-T90-DC5</a>,
-		 <a href="./DataSheets/HFD23_Hongfa.pdf">Hongfa HFD23/05-1ZP</a>
+		<a href="./DataSheets/HFD23_Hongfa.pdf">Hongfa HFD23/05-1ZP</a>
 	</td>
 </tr>
 
@@ -1612,9 +1649,10 @@
 	<td>
 		<a href="./BomPics/L1_68uH.png">
 			<img src="./BomPics/L1_68uH.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
+		Обвязка энкодера <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -1634,10 +1672,11 @@
 	<td>
 		<a href="./BomPics/L2_3_5R6uH.png">
 			<img src="./BomPics/L2_3_5R6uH.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	</td>
 	<td>
+		Фильтрация питающего напряжения видеопроцессора <a href="#U3">U3</a>
 	</td>
 	<td>
 	</td>
@@ -1661,7 +1700,7 @@
 	<td>
 	</td>
 	<td>
-		Защита транзистора от ЭДС в обмотке рэле <a href="#RY1">RY1</a>
+		Защита транзистора <a href="#Q1">Q1</a> от ЭДС в обмотке рэле <a href="#RY1">RY1</a>
 	</td>
 	<td>
 		<a href="./DataSheets/1N4148_Vishay%20Semiconductors.pdf">Vishay 1N4148</a>,
@@ -1689,9 +1728,11 @@
 	<td>
 		<a href="./BomPics/Q1_2_2907.png">
 			<img src="./BomPics/Q1_2_2907.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
+		Q1 управление реле включения &frasl; выключения мотора магнитофона <a href="#RY1">RY1</a>,
+		Q2 формирование синхросигнала при использовании видеопроцессора V9938
 	</td>
 	<td>
 	</td>
@@ -1715,9 +1756,10 @@
 	<td>
 		<a href="./BomPics/Y1_21MHz.png">
 			<img src="./BomPics/Y1_21MHz.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
+		Генерация импульсов тактовой частоты видеопроцессора <a href="#U3">U3</a>
 	</td>
 	<td>
 	</td>
@@ -1737,6 +1779,9 @@
 		SD-38 (цилиндрический длиной 8.3&nbsp;мм, диаметром 3.2&nbsp;мм)
 	</td>
 	<td>
+		<a href="./BomPics/Y2_32768.png">
+			<img src="./BomPics/Y2_32768.png" width="200"/>
+		</a>
 	</td>
 	<td>
 		Генерация импульсов для часов реального времени
@@ -1761,6 +1806,7 @@
 	<td>
 	</td>
 	<td>
+		Генерация импульсов поднесущей цветности видеосигнала в системе кодирования цветности PAL для энкодера PAL/NTSC <a href="#U47">U47</a>
 	</td>
 	<td>
 	</td>
@@ -1784,7 +1830,7 @@
 	<td>
 		<a href="./BomPics/F1_075.png">
 			<img src="./BomPics/F1_075.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Предохранитель в цепи питания джойстиков
@@ -1812,7 +1858,7 @@
 	<td>
 		<a href="./BomPics/J1_DC.png">
 			<img src="./BomPics/J1_DC.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Вход для подключения пятивольтового питающего напряжения
@@ -1836,7 +1882,7 @@
 	<td>
 		<a href="./BomPics/J2_RCA_White.png">
 			<img src="./BomPics/J2_RCA_White.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Выход звука
@@ -1862,10 +1908,10 @@
 	<td>
 		<a href="./BomPics/J2_RCA_Yellow.png">
 			<img src="./BomPics/J2_RCA_Yellow.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
-		 Выход композитного видеосигнала
+		Выход композитного видеосигнала
 	</td>
 	<td>
 		<a href="./DataSheets/Connector_161-03X0-E_Cobiconn.pdf">Cobiconn 161-0380-E</a>,
@@ -1910,10 +1956,10 @@
 	<td>
 		<a href="./BomPics/J5_6_DIN8.png">
 			<img src="./BomPics/J5_6_DIN8.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
-		 Выход компонентного (RGB) видеосигнала
+		Выход компонентного (RGB) видеосигнала
 	</td>
 	<td>
 		<a href="./DataSheets/Connector_SDF-J_Series_CUI%20Devices.pdf">CUI Devices SDF-80J</a>
@@ -1935,10 +1981,10 @@
 	<td>
 		<a href="./BomPics/J5_6_DIN8.png">
 			<img src="./BomPics/J5_6_DIN8.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
-		Выход для подключения магнитофона
+		Разъём для подключения магнитофона
 	</td>
 	<td>
 		<a href="./DataSheets/Connector_SDF-J_Series_CUI%20Devices.pdf">CUI Devices SDF-80J</a>
@@ -1954,14 +2000,14 @@
 		<a href="./DataSheets/Connector_L717SDXXXP1ACH3R_Amphenol.pdf">Amphenol L717SDE09P1ACH3R</a>
 	</td>
 	<td>
-		 DB-9M правый угловой на плату
+		DB-9M правый угловой на плату
 	</td>
 	<td>
 	</td>
 	<td>
 	</td>
 	<td>
-		 Выходы для подключения джойстиков
+		Разъёмы для подключения джойстиков
 	</td>
 	<td>
 	</td>
@@ -1982,7 +2028,7 @@
 	<td>
 	</td>
 	<td>
-		 Выход для подключения принтера
+		Разъём для подключения принтера
 	</td>
 	<td>
 	</td>
@@ -2003,7 +2049,7 @@
 	<td>
 	</td>
 	<td>
-		Вход для подключения пятивольтового и двуполярного двенадцативольтового напряжений питания
+		Разъём для подключения пятивольтового и двуполярного двенадцативольтового напряжений питания
 	</td>
 	<td>
 	</td>
@@ -2024,7 +2070,7 @@
 	<td>
 		<a href="./BomPics/J11_BH16.png">
 			<img src="./BomPics/J11_BH16.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Разъём для подключения платы клавиатуры (через шлейф или напрямую)
@@ -2115,7 +2161,7 @@
 	<td>
 		<a href="./BomPics/SLOT1_2.png">
 			<img src="./BomPics/SLOT1_2.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Разъёмы для подключения картриджей
@@ -2139,7 +2185,7 @@
 	<td>
 		<a href="./BomPics/BT1_CR2032.png">
 			<img src="./BomPics/BT1_CR2032.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Подключение элемента питания для обеспечения энергонезависимости часов реального времени
@@ -2237,6 +2283,7 @@
 	<td>
 	</td>
 	<td>
+		Дешифратор из четырёх двоичных разрядов на 9 рядов матрицы клавиатуры
 	</td>
 	<td>
 		<a href="./DataSheets/HD74LS145_Hitachi.pdf">Hitachi HD74LS145</a>
@@ -2258,6 +2305,9 @@
 	<td>
 	</td>
 	<td>
+		Буферы для светодиодов <a href="#kD2">D2</a> и <a href="#kD3">D3</a>,
+		буферы колонок и ряда матрицы клавиатуры, в которых возможно нажатие специальных
+		(SHIFT, GRAPH, CODE) клавиш одновременно с обычными
 	</td>
 	<td>
 	</td>
@@ -2346,6 +2396,8 @@
 	<td>
 	</td>
 	<td>
+		Обеспечение возможности нажатия специальных (SHIFT, GRAPH, CODE)
+		клавиш одновременно с обычными
 	</td>
 	<td>
 		<a href="./DataSheets/1N4148_Vishay Semiconductors.pdf">Vishay 1N4148</a>,
@@ -2386,7 +2438,7 @@
 		<a href="./DataSheets/Resistor_SIP-RC_Series_Xicon.pdf">Xicon 264-4.7K-RC</a>
 	</td>
 	<td>
-		Резисторная сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом
+		Сборка из пяти резисторов 4.7&nbsp;кОм с общим выводом
 	</td>
 	<td>
 		SIP-6
@@ -2394,6 +2446,7 @@
 	<td>
 	</td>
 	<td>
+		Подтяжка к питанию входов буферов матрицы клавиатуры <a href="#kU2">U2</a>
 	</td>
 	<td>
 		<a href="./DataSheets/Resistor_Thick_Film_SIP_4600X_Series_Bourns.pdf">Bourns 4606X-AP1-472LF</a>
@@ -2462,7 +2515,7 @@
 	<td>
 		<a href="./BomPics/kJ1_BH16.png">
 			<img src="./BomPics/kJ1_BH16.png" width="200"/>
-	        </a>
+		</a>
 	</td>
 	<td>
 		Разъём для подключения к системной плате шлейфом или непосредственно
