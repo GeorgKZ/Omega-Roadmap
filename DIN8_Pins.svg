@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg10.dtd"> 
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	width="120" height="120"   viewBox="0 -10 120 120">
+
+<defs>
+  <g id="pin" transform="translate(0,12)" fill="gray" stroke="black">
+    <circle cx="0" cy="0"  r="6" />
+  </g>
+</defs>
+
+<g fill="none" stroke="black" style="stroke-linecap:round; stroke-linejoin:round;">
+  <path d="M 68.7 7 A 48 48 0 1 1 54 7 A 8 8 0 0 0 68.5 7.5" />
+  <use xlink:href="#pin" x="61" y="35"/>
+  <use xlink:href="#pin" x="61" y="73"/>
+
+  <use xlink:href="#pin" x="48" y="20" transform="rotate( 60,45,20)" />
+  <use xlink:href="#pin" x="73" y="25" transform="rotate(-60,70,25)" />
+
+  <use xlink:href="#pin" x="38" y="45" transform="rotate( 60,35,45)" />
+  <use xlink:href="#pin" x="83" y="50" transform="rotate(-60,80,50)" />
+
+  <use xlink:href="#pin" x="43" y="65" transform="rotate( 40,40,65)" />
+  <use xlink:href="#pin" x="78" y="69" transform="rotate(-40,75,69)" />
+
+  <g fill="black" stroke="none" font-size="8" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">
+    <text x="98" y="47" >3</text>
+    <text x="57" y="75" >2</text>
+    <text x="16" y="47" >1</text>
+    <text x="95" y="75" >5</text>
+    <text x="20" y="75" >4</text>
+    <text x="75" y="20" >7</text>
+    <text x="38" y="20" >6</text>
+    <text x="57" y="35" >8</text>
+  </g>
+</g>
+
+</svg>
