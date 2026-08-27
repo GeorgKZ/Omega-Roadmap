@@ -2,7 +2,7 @@
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> 
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-  viewBox="39.5 84 340 210">
+  viewBox="39.5 84 338 210">
 
 <title>keyboard.svg</title>
 
@@ -28934,9 +28934,9 @@ stroke-linecap:round; stroke-linejoin:round;">
 	L247.015  86.360
 	A  0.635   0.635 0 0 0 246.380  86.995
 	L246.380  88.265
-	A  0.635   0.635 0 0 0 245.745  88.900
+	A  0.635   0.635 0 0 1 245.745  88.900
 	L226.695  88.900
-	A  0.635   0.635 0 0 0 226.060  88.265
+	A  0.635   0.635 0 0 1 226.060  88.265
 	L226.060  86.995
 	A  0.635   0.635 0 0 0 225.425  86.360
 	L 45.720  86.360
