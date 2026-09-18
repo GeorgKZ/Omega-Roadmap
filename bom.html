@@ -289,7 +289,9 @@
 		<span class="overline">PSG_CS</span>, <span class="overline">VDP_CS</span>, <span class="overline">RTC_AD_WR</span>,
 		<span class="overline">RTC_CS</span>, <span class="overline">PAGE_CS</span>, <span class="overline">PPI_CS</span>,
 		<span class="overline">PRT_CMD_CS</span>, <span class="overline">PRT_DAT_WR</span>;<br>
-		U13: (&laquo;Slot Select&raquo;) формирует сигналы:
+		U13: (&laquo;Slot Select&raquo;) формирует сигналы, разрешающие обращение
+		к оперативной и постоянной памяти в зависимости от выбра первичного и вторичного
+		слотов маппера:
 		<span class="overline">SLTSL1</span>,
 		<span class="overline">SLTSL2</span>,
 		<span class="overline">SLTSL3</span>,
@@ -298,7 +300,8 @@
 		<span class="overline">ROM_CS</span>,
 		<span class="overline">ROM_A16</span>,
 		<span class="overline">ROM_A17</span>;<br>
-		U14: (&laquo;Slot Dir&raquo;) формирует сигналы:
+		U14: (&laquo;Slot Dir&raquo;) формирует сигналы ожидания и сигналы шины
+		управления картриджа:
 		<span class="overline">WAIT</span>,
 		<span class="overline">M1_WAIT</span>,
 		<span class="overline">VDP_WAIT</span>,
