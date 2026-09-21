@@ -366,6 +366,8 @@ const icDataKey = [ '',
   [ 'kSW1-SW64_SW66-SW73', 'SW73', 'SW', 256.696,  91.069, ],
 ];
 
+const OldIC = 'Blue';
+const NewIC = 'Coral';
 
 var GlobalWidth = undefined;
 var GlobalViewWidth = undefined;
@@ -1096,6 +1098,43 @@ function onLoad_keyboard(element, viewWidth) {
   drawElement('C3');
   drawElement('J1');
   drawElementsFromTo('SW', 1, 73);
+}
+
+function drawTitle(title) {
+
+  const svg = document.getElementById(GlobalSvg_id);
+  const x = 15
+  const y = 18;
+  const h = 68;
+  const w = 480;
+  const fontSize = 40;
+
+  /* Создать рамку по обозначению микросхемы */
+  var rect = document.createElementNS(svgNS,"rect");
+  rect.setAttributeNS(null,"x",x);
+  rect.setAttributeNS(null,"y",y);
+  rect.setAttributeNS(null,"width",w);
+  rect.setAttributeNS(null,"height",h);
+  rect.setAttributeNS(null,"fill","white");
+  rect.setAttributeNS(null,"stroke", "DarkCyan");
+  rect.setAttributeNS(null,"stroke-width",5.0);
+  rect.setAttributeNS(null,"rx",10.0);
+  svg.appendChild(rect);
+
+  /* Создать текстовое обозначение микросхемы */
+  var text = document.createElementNS(svgNS,"text");
+  text.setAttributeNS(null,"x",x+w/2);
+  text.setAttributeNS(null,"y",y+h/2 + fontSize * 0.1);
+  text.setAttributeNS(null,"font-size", fontSize.toString() + "px");
+  text.setAttributeNS(null,"fill", "Gold");
+  text.setAttributeNS(null,"stroke","Black");
+  text.setAttributeNS(null,"stroke-width",1.5);
+  text.setAttributeNS(null,"font-family","Noto Sans");
+  text.setAttributeNS(null,"font-weight","bold");
+  text.setAttributeNS(null,"text-anchor","middle");
+  text.setAttributeNS(null,"dominant-baseline","middle");
+  text.appendChild(document.createTextNode(title));
+  svg.appendChild(text);
 }
 
 /*

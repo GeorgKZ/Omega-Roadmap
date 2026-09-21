@@ -4,6 +4,7 @@
 <title>Компьютер Омега шаг за шагом</title>
 <link rel="alternate" href="https://msxmakers.design.blog/proyectos/proyectos-msx/omega-home-computer/omega-paso-a-paso/"/>
 <link rel="stylesheet" href="./styles.css">
+<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
@@ -1746,21 +1747,40 @@ MSX Diagnostics v1.2.0</a>, позволяющий проверить работ
 установлены правильно, соответствуют типу видеопроцессора <a href="./bom.html#U3">U3</a>.
 </p>
 
+<script type="text/javascript">
+function onLoad_step01(element, viewWidth) {
+
+  onLoad_mainboard(element, viewWidth);
+
+  drawTitle('Первый шаг');
+
+  GlobalColour = NewIC;
+
+  drawElement('U1');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U26');
+  drawElement('U42');
+  drawElement('U46');
+
+}
+</script>
+
 <center>
-	<img src="step_01.jpg" width="1024" usemap="#step_01" /><br>
-	<map name="step_01">
-		<area shape="rect" coords="460, 171, 524, 343" href="./bom.html#U1" />
-		<area shape="rect" coords="103, 237, 168, 426" href="./bom.html#U3" />
-		<area shape="rect" coords="837, 208, 901, 348" href="./bom.html#U6" />
-		<area shape="rect" coords="416, 250, 455, 339" href="./bom.html#U12_13_14" />
-		<area shape="rect" coords="416, 351, 455, 441" href="./bom.html#U12_13_14" />
-		<area shape="rect" coords="712, 221, 801, 257" href="./bom.html#U25_26" />
-		<area shape="rect" coords="304, 333, 338, 402" href="./bom.html#U42" />
-		<area shape="rect" coords="794, 362, 827, 430" href="./bom.html#U46" />
-	</map>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+  id="svg_01"
+  onload="onLoad_step01(this, 338)"
+  width="1024px" height="510px"
+>
+  <image xlink:href="mainboard.svg" width="100%" />
+</svg><br>
+
 	<cite>
-Красными рамками отмечены установленные микросхемы.
+Коралловыми рамками отмечены установленные микросхемы.
 	</cite>
+
 </center>
 
 <p>
