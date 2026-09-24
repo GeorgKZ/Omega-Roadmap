@@ -1,0 +1,76 @@
+<svg
+   width="96"
+   height="20"
+   xmlns="http://www.w3.org/2000/svg">
+  <title>Platform: MSX</title>
+  <linearGradient id="gradient"
+     x2="0"
+     y2="100%">
+    <stop
+        offset="0"
+        stop-color="#B0B0B0"
+        stop-opacity=".1"/>
+    <stop
+        offset="1"
+        stop-opacity=".3"/>
+  </linearGradient>
+  <clipPath id="clippath">
+     <rect id="rect_clip"
+        width="96"
+        height="20"
+        rx="3"
+        fill="#FFFFFF"/>
+  </clipPath>
+  <g
+     clip-path="url(#clippath)">
+    <rect id="rect_left"
+       width="51"
+       height="20"
+       fill="#505050"/>
+    <rect id="rect_right"
+       x="51"
+       width="45"
+       height="20"
+       fill="#007EC6"/>
+    <rect id="rect_gradient"
+       width="96"
+       height="20"
+       fill="url(#gradient)"/>
+  </g>
+  <g id="text"
+     fill="#FFFFFF"
+     text-anchor="start"
+     font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
+     text-rendering="geometricPrecision"
+     font-size="11">
+    <text id="text_left_shadow"
+       x="4"
+       y="15"
+       fill="#010101"
+       fill-opacity=".3">Platform</text>
+    <text id="text_left"
+       x="3"
+       y="14.0"
+       fill="#FFFFFF">Platform</text>
+  </g>
+  <g id="msx_logo"
+     transform="matrix(0.08,0,0,0.08,53,1.5)">
+    <rect id="black_rect" x="0" y="0" width="512" height="212" fill="#000"/>
+    <path id="logo" d="
+	m33.588 181.95 38.891 -153.09
+	h36.062
+	l18.738 66.822 19.445 -66.822
+	h33.941
+	l31.82 112.78 77.635 -0.14645
+	c8.1496 -0.0794 8.6495 -16.932 -0.60356 -16.928
+	l-45.212 -0.60355
+	c-19.415 0.18783 -39.888 -20.816 -38.891 -48.79 0.20715 -25.659 22.582 -45.865 51.205 -45.858
+	l115.32-0.10355 29.345 39.952 28.638-40.305 47.73 0.35355-52.326 73.539 56.569 79.739-47.48-0.14645-32.923-45.755-31.32 45.755-48.437-0.0429 55.154-78.842-24.042-35.002-100.24 0.14645
+	c-10.94 0.10027-10.539 17.311 0.0858 16.988
+	l42.237 0.64645
+	c17.851 0.1156 42.991 18.666 42.366 47.626 0.27297 33.669 -30.052 49.05 -44.651 48.23
+	l-110.56 0.14646 -18.385 -68.882 -18.385 68.736
+	h-34.898
+	l-19.195 -68.382 -16.867 68.486 -40.762 -0.25z" fill="#fff"/>
+  </g>
+</svg>
