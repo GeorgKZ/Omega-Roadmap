@@ -267,3 +267,117 @@ div:target {
   /* Плавное изменение цвета */
   transition: all 0.8s ease-in-out;
 }
+
+/* Завеса во весь экран, затеняющее экран на время просмотра изображения */
+.veil {
+  position: fixed;
+  /* Занять всю доступную прощадь окна браузера */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Затенить экран */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* По умолчанию не отображать, будет изменено в ява-скрипте */
+  display: none;
+  /* Выровнять внутренние объекты (рамку) по горизонтали */
+  justify-content: center;
+  /* Выровнять внутренние объекты (рамку) по вертикали */
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Рамка с закруглёнными углами, в которой будет показано изображение */
+.modal-frame {
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+  /* Закруглённые углы рамки */
+  border-radius: 8px;
+  /* Скрыть выступающие края внутренних элементов */
+  overflow: hidden; 
+  /* Заполнить рамку серым цветом */
+  background-color: gray;
+  /* Оттенить рамку */
+  box-shadow: 0px 0px 40px rgba(0,0,0,0.9);
+}
+
+/* Копия изображения, которая будет перемещаться и масштабироваться */
+.modal-image {
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto;
+  cursor: grab;
+  will-change: transform;
+  /* чтобы не выделялся текст при частых кликах */
+  user-select: none;
+}
+
+/* Над изображением изменить курсор, показывая, что изображение можно перетаскивать */
+.modal-image:active {
+  cursor: grabbing;
+}
+
+/* Кнопка закрытия просмотра изображения */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 28px;
+  background: rgba(255,255,255,0.5);
+  padding: 4px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+  /* чтобы не выделялся текст при частых кликах */
+  user-select: none;
+}
+
+/* Кнопка закрытия при наведении курсора становится ярче */
+.close-btn:hover {
+  background: rgba(255,255,255,1.0);
+}
+
+/* Панель управления масштабированием */
+.zoom-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Кнопка масштабирования */
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Кнопка масштабирования при наведении курсора становится темнее */
+.zoom-btn:hover {
+  background: #eee;
+}
+
+/* Изображение, доступное для увеличенного просмотра */
+img.overview {
+  /* Над изображением меняется курсор, приглашая к нажатию */
+  cursor: pointer;
+  /* Изображение сделать блочным (для выравнивания) */
+  display: block;
+  /* Изображение выровнено по горизонтали */
+  margin-left: auto;
+  margin-right: auto;
+}
