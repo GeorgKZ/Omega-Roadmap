@@ -374,6 +374,7 @@ var GlobalViewWidth = undefined;
 var GlobalSvg_id = undefined;
 var GlobalColour = undefined;
 var GlobalMainOrKey = undefined;
+var GlobalDot = undefined;
 
 /* Отобразить диапазон компонентов, например ('R', 2, 5) -> R2,R3,R4,R5 */
 function drawElementsFromTo(letter, indexFrom, indexTo) {
@@ -456,6 +457,9 @@ function drawIC(data) {
   rect.setAttributeNS(null,"fill","none");
   rect.setAttributeNS(null,"stroke", GlobalColour);
   rect.setAttributeNS(null,"stroke-width",4.0);
+  if (GlobalDot != "none") {
+    rect.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+  }
   rect.setAttributeNS(null,"rx",5.0);
   svg.appendChild(rect);
 
@@ -468,6 +472,9 @@ function drawIC(data) {
   hollow.setAttributeNS(null,"fill","red");
   hollow.setAttributeNS(null,"stroke","red");
   hollow.setAttributeNS(null,"stroke-width",4.0);
+  if (GlobalDot != "none") {
+    hollow.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+  }
   hollow.setAttributeNS(null,"rx",5.0);
   hollow.setAttributeNS(null,"fill-opacity",0);
   hollow.setAttributeNS(null,"stroke-opacity",0);
@@ -963,6 +970,9 @@ function drawBattery(data) {
     circle.setAttributeNS(null,"fill","none");
     circle.setAttributeNS(null,"stroke", GlobalColour);
     circle.setAttributeNS(null,"stroke-width",2.0);
+    if (GlobalDot != "none") {
+      circle.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+    }
     svg.appendChild(circle);
 
     /* Создать невидимый круг, появляющийся при наведении курсора */
@@ -973,6 +983,9 @@ function drawBattery(data) {
     hollow.setAttributeNS(null,"fill","red");
     hollow.setAttributeNS(null,"stroke","red");
     hollow.setAttributeNS(null,"stroke-width",2.0);
+    if (GlobalDot != "none") {
+      hollow.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+    }
     hollow.setAttributeNS(null,"fill-opacity",0);
     hollow.setAttributeNS(null,"stroke-opacity",0);
     hollow.setAttributeNS(null,"id", (GlobalMainOrKey ? "" : "k") + name);
@@ -1057,6 +1070,7 @@ function onLoad_mainboard(element, viewWidth) {
   GlobalMainOrKey = true;
   GlobalViewWidth = viewWidth;
   GlobalColour = 'none';
+  GlobalDot = 'none';
 
   drawElementsFromTo('U', 1, 49);
   drawElementsFromTo('C', 1, 94);
@@ -1085,6 +1099,7 @@ function onLoad_keyboard(element, viewWidth) {
   GlobalMainOrKey = false;
   GlobalViewWidth = viewWidth;
   GlobalColour = 'none';
+  GlobalDot = 'none';
 
   drawElement('U1');
   drawElement('U2');
