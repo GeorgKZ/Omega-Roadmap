@@ -255,7 +255,7 @@ const icDataMain = [
   [ 'SLOT1_2',  'SLOT1', 'B',   247.191, 39.291,   70.104,  9.144, ],
   [ 'SLOT1_2',  'SLOT2', 'B',   247.191, 16.431,   70.104,  9.144, ],
 
-  [ 'BT1',  'BT1',   'BT',  280.973, 132.763, 23.114, ],
+  [ 'BT1',  'BT1',   'BT',  298.53, 144.32, ],
 
   [ 'JP1_2',                 'JP1',  'RR', 287.323,  127.810, 2,  0, ],
   [ 'JP1_2',                 'JP2',  'RR',  95.553,   66.850, 2, 90, ],
@@ -456,7 +456,7 @@ function drawIC(data) {
   rect.setAttributeNS(null,"height",h);
   rect.setAttributeNS(null,"fill","none");
   rect.setAttributeNS(null,"stroke", GlobalColour);
-  rect.setAttributeNS(null,"stroke-width",4.0);
+  rect.setAttributeNS(null,"stroke-width",3.0);
   if (GlobalDot != "none") {
     rect.setAttributeNS(null,"stroke-dasharray", GlobalDot);
   }
@@ -471,7 +471,7 @@ function drawIC(data) {
   hollow.setAttributeNS(null,"height",h);
   hollow.setAttributeNS(null,"fill","red");
   hollow.setAttributeNS(null,"stroke","red");
-  hollow.setAttributeNS(null,"stroke-width",4.0);
+  hollow.setAttributeNS(null,"stroke-width",3.0);
   if (GlobalDot != "none") {
     hollow.setAttributeNS(null,"stroke-dasharray", GlobalDot);
   }
@@ -956,55 +956,93 @@ function drawBattery(data) {
   const svg = document.getElementById(GlobalSvg_id);
   var name = data[1];
 
+  /* Центр минусового контакта */
+  var x = data[3];
+  var y = data[4];
 
-    /* Рассчитать параметры окружности обозначения панели батарейки */
-    var r = scaleCoord(data[5])/2;
-    var x = scaleCoord(data[3]) + r; // Центр для конденсатора типа 'A'-'D' по горизонтали
-    var y = scaleCoord(data[4]) + r; // Центр для конденсатора типа 'A'-'D' по вертикали
+  /* Создать контур, обозначающий панель батарейки */
+  var pattern = document.createElementNS(svgNS,"g");
+  pattern.setAttributeNS(null,"transform", "scale(" + scaleCoord(1) + ")");
+  pattern.setAttributeNS(null,"fill","none");
+  pattern.setAttributeNS(null,"stroke",GlobalColour);
+  pattern.setAttributeNS(null,"stroke-width",1.0);
+  if (GlobalDot != "none") {
+    pattern.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+  }
 
-    /* Создать окружность по обозначению панели батарейки */
-    var circle = document.createElementNS(svgNS,"circle");
-    circle.setAttributeNS(null,"cx",x);
-    circle.setAttributeNS(null,"cy",y);
-    circle.setAttributeNS(null,"r",r);
-    circle.setAttributeNS(null,"fill","none");
-    circle.setAttributeNS(null,"stroke", GlobalColour);
-    circle.setAttributeNS(null,"stroke-width",2.0);
-    if (GlobalDot != "none") {
-      circle.setAttributeNS(null,"stroke-dasharray", GlobalDot);
-    }
-    svg.appendChild(circle);
+  {
+    var path = document.createElementNS(svgNS,"path");
+    path.setAttribute("d", "m " + (x+1.0) + ", " + (y+2.97) + " h 4 a 0.5, 0.5 0 0 0 0.5, -0.5 v -5 a 0.5, 0.5 0 0 0 -0.5, -0.5 h -4 a 1, 1 0 0 1 -1, -1 v -7 a 0.5, 0.5 0 0 0 -0.5, -0.5 h -9.5 l -10, 5.77 a 11.5, 11.5 0 0 0 -1.54, 5.75 a 11.5, 11.5 0 0 0 1.54, 5.75 l 10, 5.77 h 9.5 a 0.5, 0.5 0 0 0 0.5, -0.5 v -7 a 1, 1 0 0 1 1, -1");
+    pattern.appendChild(path);
 
-    /* Создать невидимый круг, появляющийся при наведении курсора */
-    var hollow = document.createElementNS(svgNS,"circle");
-    hollow.setAttributeNS(null,"cx",x);
-    hollow.setAttributeNS(null,"cy",y);
-    hollow.setAttributeNS(null,"r",r);
-    hollow.setAttributeNS(null,"fill","red");
-    hollow.setAttributeNS(null,"stroke","red");
-    hollow.setAttributeNS(null,"stroke-width",2.0);
-    if (GlobalDot != "none") {
-      hollow.setAttributeNS(null,"stroke-dasharray", GlobalDot);
-    }
-    hollow.setAttributeNS(null,"fill-opacity",0);
-    hollow.setAttributeNS(null,"stroke-opacity",0);
-    hollow.setAttributeNS(null,"id", (GlobalMainOrKey ? "" : "k") + name);
-    hollow.classList.add("hollow-hover");
-    svg.appendChild(hollow);
+    var path2 = document.createElementNS(svgNS,"path");
+    path2.setAttribute("d", "m " + (x-16.6) + ", " + (y-3.5) + " h -4.9 v 7.0 h 4.9 z");
+    pattern.appendChild(path2);
 
-    /* Создать всплывающую подсказку с текстовым обозначением компонента */
-    const title = document.createElementNS(svgNS, "title");
-    title.textContent = name;
-    /* Добавить подсказку к невидимому прямоугольнику */
-    hollow.appendChild(title);
+    var c1 = document.createElementNS(svgNS,"circle");
+    c1.setAttributeNS(null,"cx",x-7.91);
+    c1.setAttributeNS(null,"cy",y);
+    c1.setAttributeNS(null,"r",11.05);
+    pattern.appendChild(c1);
 
-    /* Создать ссылку */
-    const ref = document.createElementNS(svgNS, 'a');
-    ref.setAttributeNS(xlinkNS, "href", "./bom.html#" + data[0]);
-    /* Связать невидимый круг со ссылкой */
-    ref.appendChild(hollow);
-    /* Добавить ссылку к документу */
-    svg.appendChild(ref);
+    var c2 = document.createElementNS(svgNS,"circle");
+    c2.setAttributeNS(null,"cx",x-6.00);
+    c2.setAttributeNS(null,"cy",y);
+    c2.setAttributeNS(null,"r",11.45);
+    pattern.appendChild(c2);
+  }
+  svg.appendChild(pattern);
+
+  /* Создать невидимый контур, появляющийся при наведении курсора */
+  var hollow = document.createElementNS(svgNS,"g");
+  hollow.setAttributeNS(null,"transform", "scale(" + scaleCoord(1) + ")");
+  hollow.setAttributeNS(null,"fill","red");
+  hollow.setAttributeNS(null,"stroke","red");
+  hollow.setAttributeNS(null,"stroke-width",1.0);
+  if (GlobalDot != "none") {
+    hollow.setAttributeNS(null,"stroke-dasharray", GlobalDot);
+  }
+  hollow.setAttributeNS(null,"fill-opacity",0);
+  hollow.setAttributeNS(null,"stroke-opacity",0);
+  hollow.classList.add("hollow-hover");
+  hollow.setAttributeNS(null,"id", (GlobalMainOrKey ? "" : "k") + name);
+
+  {
+    var path = document.createElementNS(svgNS,"path");
+    path.setAttribute("d", "m " + (x+1.0) + ", " + (y+2.97) + " h 4 a 0.5, 0.5 0 0 0 0.5, -0.5 v -5 a 0.5, 0.5 0 0 0 -0.5, -0.5 h -4 a 1, 1 0 0 1 -1, -1 v -7 a 0.5, 0.5 0 0 0 -0.5, -0.5 h -9.5 l -10, 5.77 a 11.5, 11.5 0 0 0 -1.54, 5.75 a 11.5, 11.5 0 0 0 1.54, 5.75 l 10, 5.77 h 9.5 a 0.5, 0.5 0 0 0 0.5, -0.5 v -7 a 1, 1 0 0 1 1, -1");
+    hollow.appendChild(path);
+
+    var path2 = document.createElementNS(svgNS,"path");
+    path2.setAttribute("d", "m " + (x-16.6) + ", " + (y-3.5) + " h -4.9 v 7.0 h 4.9 z");
+    hollow.appendChild(path2);
+
+    var c1 = document.createElementNS(svgNS,"circle");
+    c1.setAttributeNS(null,"cx",x-7.91);
+    c1.setAttributeNS(null,"cy",y);
+    c1.setAttributeNS(null,"r",11.05);
+    hollow.appendChild(c1);
+
+    var c2 = document.createElementNS(svgNS,"circle");
+    c2.setAttributeNS(null,"cx",x-6.00);
+    c2.setAttributeNS(null,"cy",y);
+    c2.setAttributeNS(null,"r",11.45);
+    hollow.appendChild(c2);
+  }
+  svg.appendChild(hollow);
+
+  /* Создать всплывающую подсказку с текстовым обозначением компонента */
+  const title = document.createElementNS(svgNS, "title");
+  title.textContent = name;
+  /* Добавить подсказку к невидимому контуру */
+  hollow.appendChild(title);
+
+  /* Создать ссылку */
+  const ref = document.createElementNS(svgNS, 'a');
+  ref.setAttributeNS(xlinkNS, "href", "./bom.html#" + data[0]);
+  /* Связать невидимый контур со ссылкой */
+  ref.appendChild(hollow);
+  /* Добавить ссылку к документу */
+  svg.appendChild(ref);
 }
 
 function drawKey(data) {
@@ -1151,14 +1189,3 @@ function drawTitle(title) {
   text.appendChild(document.createTextNode(title));
   svg.appendChild(text);
 }
-
-/*
-window.addEventListener('resize', handleResize()_;
-
-function handleResize {
-  const computedWidth = window.getComputedStyle(document.querySelector('#mainboard')).width;
-  GlobalWidth = parseInt(computedWidth, 10);
-//  console.log(`Новые размеры: ${GlobalWidth}`);
-});
-*/
-
