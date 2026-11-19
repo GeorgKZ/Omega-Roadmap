@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head meta charset="UTF-8">
 <title>Системная плата и плата клавиатуры</title>
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="styles.css">
 
 <style>
 
@@ -9,15 +9,21 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  max-width: none;
+}
+
+
 /* Свойства якорного (при переходе по его ID) элемента в svg */
 svg :target {
   /* Запуск анимационной последовательности */
   animation: svg_animation 2s ease-in-out;
   /* Свойства после окончания анимации */
-  fill: grey;
-  fill-opacity: 0.8;
+
+  fill: grey; 
+  fill-opacity: 0.3;
   stroke: black;
-  stroke-opacity: 1.0;
+  stroke-opacity: 0;
 }
 
 /* Анимация цвета фона и обрамления, их прозрачностей */
@@ -46,19 +52,739 @@ svg :target {
     /* 60 % - 100 % - жёлтый фон плавно исчезает, сменяясь слабым серым */
     100% {
            fill: grey;
-           fill-opacity: 0.8;
+           fill-opacity: 0.3;
            stroke: black;
-           stroke-opacity: 1.0;
+           stroke-opacity: 0.0;
          }
 }
 
+/**
+ * Панель управления переключением площадки/посадочные места
+ */
+.check-controls {
+  position: fixed;
+  top: 6px;
+  /* Центрирование по горизонтали */
+  left: 50%;
+  width: 110px;
+  transform: translateX(-50%); 
+  background: rgba(0,0,0,0.6);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+/**
+ * Кнопка переключения площадки/посадочные места
+ */
+.check-btn {
+    /* Делаем их строчно-блочными */
+    display: inline-block;
+    /* Ширина кнопки */
+    width: 50px;
+    /* Высота кнопки */
+    height: 30px;
+    /* Отступ по бокам */
+    margin: 2px;
+    /* Цвет текста */
+    color: black;
+    /* Убираем границу */ 
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+/**
+ * Класс для деления экрана на зоны
+ */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 1fr;
+  /* отступы между ячейками */
+  gap: 16px; 
+  /* max-width: 900px; */
+  margin: 0 auto;
+  /* background: white; */
+  padding: 16px;
+}
+
+/**
+ * Класс для таблицы-скроллера
+ */
+.bimbom-table {
+  display: block;
+  /* Фиксированная высота */
+  max-height: 650px;
+  /* Включаем вертикальную прокрутку */
+  overflow-y: auto;
+  /* Минимально допустимая ширина */
+  min-width: 380px;
+  width: 100%;
+  border-collapse: separate;  /* вместо collapse */
+  border-spacing: 0;
+
+  border: 3px solid black;
+
+}
+
+/**
+ * Фиксация заголовка
+ */
+.bimbom-table thead th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+
+  /* Рамка 3px со всех сторон */
+  border: 3px solid #333;
+}
+
+/* Убираем лишние границы у первой ячейки, если нужно */
+.bimbom-table thead th:first-child {
+  border-left-width: 3px;
+}
+
+/* Убираем лишние границы у последней ячейки, если нужно */
+.bimbom-table thead th:last-child {
+  border-right-width: 3px;
+}
+
+
 </style>
 
+<script type="text/javascript" src="mainboard.js"></script>
+<script type="text/javascript" src="keyboard.js"></script>
 <script type="text/javascript" src="script.js"></script>
 
 </head>
 <body>
 
+<div id="checkButtons" class="check-controls">
+	<button id="buttonP" class="check-btn">Pad</button>
+	<button id="buttonF" class="check-btn">Foot</button>
+</div>
+
+<div class="container">
+
+<!-- таблица -->
+<div>
+
+<table id="MainTable" class="bimbom-table"><thead><tr><th>Обозначение</th><th>Тип/номинал</th><th>Кол-во</th></tr></thead>
+<tbody>
+<tr><td colspan="3"><div class="bom_class">Процессор и контроллеры</div></td></tr>
+
+<tr id="table_U1" data-href="./bom.html#U1">
+	<td>U1</td>
+	<td>Z84С00XX</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U2" data-href="./bom.html#U2">
+	<td>U2</td>
+	<td>82C55A</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U3" data-href="./bom.html#U3">
+	<td>U3</td>
+	<td>V9958</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U4" data-href="./bom.html#U4">
+	<td>U4</td>
+	<td>YM2149</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U5" data-href="./bom.html#U5">
+	<td>U5</td>
+	<td>RP5C01</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Память</div></td></tr>
+
+
+<tr id="table_U6">
+	<td>U6</td>
+	<td>SST39SF040</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U7">
+	<td>U7</td>
+	<td>AS6C4008</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U8_9_10_11">
+	<td>U8&hellip;U11</td>
+	<td>&mu;PD41464</td>
+	<td>4</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Логические матрицы</div></td></tr>
+
+<tr id="table_U12_13_14">
+	<td>U12, U13, U14</td>
+	<td>ATF16V8B</td>
+	<td>3</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Триггеры, счётчики и т.д.</div></td></tr>
+
+<tr id="table_U15_16_17_18">
+	<td>U15&hellip;U18</td>
+	<td>74HC670</td>
+	<td>4</td>
+</tr>
+
+<tr id="table_U19_20_21">
+	<td>U19, U20, U21</td>
+	<td>74F541</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_U22">
+	<td>U22</td>
+	<td>74HCT540</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U23_24">
+	<td>U23, U24</td>
+	<td>74HCT273</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_U25_26">
+	<td>U25, U26</td>
+	<td>74F245</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_U27">
+	<td>U27</td>
+	<td>74HCT175</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U28_29">
+	<td>U28, U29</td>
+	<td>74HCT157</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_U30_31">
+	<td>U30, U31</td>
+	<td>74HCT153</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_U32">
+	<td>U32</td>
+	<td>74AHCT138</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U33">
+	<td>U33</td>
+	<td>74AHCT125</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U34_35_36">
+	<td>U34, U35, U36</td>
+	<td>74HCT74</td>
+	<td>3</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Комбинаторная логика</div></td></tr>
+
+<tr id="table_U37_38_39">
+	<td>U37, U38, U39</td>
+	<td>74AHCT32</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_U40_41">
+	<td>U40, U41</td>
+	<td>74HCT30</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_U42">
+	<td>U42</td>
+	<td>74LS07</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U43">
+	<td>U43</td>
+	<td>74HCT04</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U44">
+	<td>U44</td>
+	<td>74AHCT02</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U45">
+	<td>U45</td>
+	<td>74HCT00</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Цифро-аналоговые м/с</div></td></tr>
+
+<tr id="table_U46">
+	<td>U46</td>
+	<td>ADM691A</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U47">
+	<td>U47</td>
+	<td>CXA1645P</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U48">
+	<td>U48</td>
+	<td>MCP6281-E/P</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_U49">
+	<td>U49</td>
+	<td>LM311N</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Конденсаторы</div></td></tr>
+
+<tr id="table_C1_58">
+	<td>C1&hellip;C58</td>
+	<td>0.1&nbsp;мкФ</td>
+	<td>58</td>
+</tr>
+
+<tr id="table_C59_64">
+	<td>C59&hellip;C64</td>
+	<td>220&nbsp;мкФ</td>
+	<td>6</td>
+</tr>
+
+<tr id="table_C65_67">
+	<td>C65, C66, C67</td>
+	<td>100&nbsp;мкФ</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_C68_70">
+	<td>C68, C69, C70</td>
+	<td>10&nbsp;мкФ</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_C71_77">
+	<td>C71&hellip;C77</td>
+	<td>10&nbsp;мкФ</td>
+	<td>7</td>
+</tr>
+
+<tr id="table_C78">
+	<td>C78</td>
+	<td>1&nbsp;мкФ</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_C79_80">
+	<td>C79, C80</td>
+	<td>22&nbsp;нФ</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_C81">
+	<td>C81</td>
+	<td>1.5&nbsp;нФ</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_C82_84">
+	<td>C82, C83, C84</td>
+	<td>330&nbsp;пФ</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_C85">
+	<td>C85</td>
+	<td>47&nbsp;пФ</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_C86_87">
+	<td>C86, C87</td>
+	<td>33&nbsp;пФ, 50&nbsp;В</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_C88_90">
+	<td>C88, C89, C90</td>
+	<td>6.5&hellip;33&nbsp;пФ</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_C91">
+	<td>C91</td>
+	<td>27&nbsp;пФ (NTSC), 18&nbsp;пФ (PAL)</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_C92_93">
+	<td>C92, C93</td>
+	<td>22&nbsp;пФ</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_C94">
+	<td>C94</td>
+	<td>4.7&nbsp;пФ</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Резисторные сборки</div></td></tr>
+
+<tr id="table_RR1_4">
+	<td>RR1&hellip;RR4</td>
+	<td>10&nbsp;кОм, 10 выв.</td>
+	<td>4</td>
+</tr>
+
+<tr id="table_RR5_7">
+	<td>RR5, RR6, RR7</td>
+	<td>4.7&nbsp;кОм, 10 выв.</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_RR8_10">
+	<td>RR8, RR10</td>
+	<td>4.7&nbsp;кОм, 6 выв.</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_RR9">
+	<td>RR9</td>
+	<td>470&nbsp;Ом, 6 выв.</td>
+	<td>1</td>
+</tr>
+
+
+<tr><td colspan="3"><div class="bom_class">Резисторы</div></td></tr>
+
+<tr id="table_R1">
+	<td>R1</td>
+	<td>1&nbsp;МОм</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R2_3">
+	<td>R2, R3</td>
+	<td>470&nbsp;кОм</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_R4">
+	<td>R4</td>
+	<td>220&nbsp;кОм</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R5_6">
+	<td>R5, R6</td>
+	<td>100&nbsp;кОм</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_R7_8">
+	<td>R7, R8</td>
+	<td>47&nbsp;кОм</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_R9">
+	<td>R9</td>
+	<td>20&nbsp;кОм (NTSC), 16&nbsp;кОм (PAL)</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R10">
+	<td>R10</td>
+	<td>20&nbsp;кОм</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R11_14">
+	<td>R11&hellip;R14</td>
+	<td>10&nbsp;кОм</td>
+	<td>4</td>
+</tr>
+
+<tr id="table_R15">
+	<td>R15</td>
+	<td>5.6&nbsp;кОм</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R16_22">
+	<td>R16&hellip;R22</td>
+	<td>4.7&nbsp;кОм</td>
+	<td>7</td>
+</tr>
+
+<tr id="table_R23_24">
+	<td>R23, R24</td>
+	<td>2.7&nbsp;кОм</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_R25_26">
+	<td>R25, R26</td>
+	<td>2.2&nbsp;кОм</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_R27_33">
+	<td>R27&hellip;R33</td>
+	<td>1&nbsp;кОм</td>
+	<td>7</td>
+</tr>
+
+<tr id="table_R34">
+	<td>R34</td>
+	<td>470&nbsp;Ом</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R35">
+	<td>R35</td>
+	<td>180&nbsp;Ом</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R36">
+	<td>R36</td>
+	<td>120&nbsp;Ом</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_R37_42">
+	<td>R37&hellip;R42</td>
+	<td>100&nbsp;Ом</td>
+	<td>6</td>
+</tr>
+
+<tr id="table_R43_48">
+	<td>R43&hellip;R48</td>
+	<td>75&nbsp;Ом</td>
+	<td>6</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Реле</div></td></tr>
+
+<tr id="table_RY1">
+	<td>RY1</td>
+	<td>5&nbsp;В</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Индуктивности</div></td></tr>
+
+<tr id="table_L1"><td>L1</td>
+	<td>68&nbsp;мкГн</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_L2_3">
+	<td>L2, L3</td>
+	<td>5.6&nbsp;мкГн</td>
+	<td>2</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Диоды</div></td></tr>
+
+<tr id="table_D1">
+	<td>D1</td>
+	<td>1N4148</td>
+	<td>1</td>
+</tr>
+
+
+<tr><td colspan="3"><div class="bom_class">Транзисторы</div></td></tr>
+
+<tr id="table_Q1_2">
+	<td>Q1, Q2</td>
+	<td>PN2907A</td>
+	<td>2</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Кварцевые резонаторы</div></td></tr>
+
+<tr id="table_Y1">
+	<td>Y1</td>
+	<td>21.477270&nbsp;МГц</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_Y2">
+	<td>Y2</td>
+	<td>32768&nbsp;Гц</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_Y3">
+	<td>Y3</td>
+	<td>4.433618&nbsp;МГц</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Предохранители</div></td></tr>
+
+
+<tr id="table_F1">
+	<td>F1</td>
+	<td>750&nbsp;мА</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Разъёмы</div></td></tr>
+
+
+<tr id="table_J1">
+	<td>J1</td>
+	<td>Цилиндрическое гнездо диаметром 5.7&nbsp;мм</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J2">
+	<td>J2</td>
+	<td>Разъём RCA жёлтый</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J3">
+	<td>J3</td>
+	<td>Разъём RCA белый</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J4">
+	<td>J4</td>
+	<td>Mini DIN-4</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J5">
+	<td>J5</td>
+	<td>DIN-8</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J6">
+	<td>J6</td>
+	<td>DIN-8</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J7_8">
+	<td>J7, J8</td>
+	<td>DB-9M</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_J9">
+	<td>J9</td>
+	<td>CENR-14F</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J10">
+	<td>J10</td>
+	<td>VH-8</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J11">
+	<td>J11</td>
+	<td>BH-16</td>
+	<td>1</td>
+</tr>
+
+
+<tr id="table_J12">
+	<td>J12</td>
+	<td>PBD-20</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J13">
+	<td>J13</td>
+	<td>PLD-4</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_J14">
+	<td>J14</td>
+	<td>PLS-13</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_SLOT1_2">
+	<td>SLOT1, SLOT2</td>
+	<td>Краевой разъём 50 контактов</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_BT1">
+	<td>BT1</td>
+	<td>Панель CR2032</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Перемычки</div></td></tr>
+
+<tr id="table_JP1_2">
+	<td>JP1, JP2</td>
+	<td>PLS-2</td>
+	<td>2</td>
+</tr>
+
+<tr id="table_JP3_6">
+	<td>JP3&hellip;JP6</td>
+	<td>PLS-3</td>
+	<td>4</td>
+</tr>
+
+<tr id="table_JP7_8">
+	<td>JP7, JP8</td>
+	<td>PLD-6</td>
+	<td>2</td>
+</tr>
+
+</tbody></table>
+
+</div>
+
+<!-- плата -->
+<div>
 
 <h2>Чертёж системной платы</h2>
 
@@ -70,6 +796,118 @@ svg :target {
   <image xlink:href="mainboard.svg" width="100%" />
 </svg>
 
+</div>
+
+<!-- таблица -->
+<div>
+
+<table id="KeyTable" class="bimbom-table"><thead><tr><th>Обозначение</th><th>Тип/номинал</th><th>Кол-во</th></tr></thead>
+<tbody>
+<tr><td colspan="3"><div class="bom_class">Комбинаторная логика</div></td></tr>
+
+<a href="./boards.html#kU1">
+<tr id="table_kU1">
+	<td>U1</td>
+	<td>74LS145</td>
+	<td>1</td>
+</tr>
+</a>
+<tr id="table_kU2">
+	<td>U2</td>
+	<td>74LS07</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Светодиоды</div></td></tr>
+
+<tr id="table_kD1">
+	<td>D1</td>
+	<td>Зелёный</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_kD2">
+	<td>D2</td>
+	<td>Жёлтый</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_kD3">
+	<td>D3</td>
+	<td>Красный</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Диоды</div></td></tr>
+
+<tr id="table_kD4_6">
+	<td>D4, D5, D6</td>
+	<td>1N4148</td>
+	<td>3</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Резисторные сборки</div></td></tr>
+
+<tr id="table_kRN1">
+	<td>RN1</td>
+	<td>4.7&nbsp;кОм, 6 выводов</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Резисторы</div></td></tr>
+
+<tr id="table_kR1_3">
+	<td>R1, R2, R3</td>
+	<td>470&nbsp;Ом</td>
+	<td>3</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Ёмкости</div></td></tr>
+
+<tr id="table_kC1_C2">
+	<td>C1, C2</td>
+	<td>0.1&nbsp;мкФ</td>
+	<td>3</td>
+</tr>
+
+<tr id="table_kC3">
+	<td>C3</td>
+	<td>10&nbsp;мкФ</td>
+	<td>1</td>
+</tr>
+
+<tr><td colspan="3"><div class="bom_class">Разъёмы</div></td></tr>
+
+<tr id="table_kJ1">
+	<td>J1</td>
+	<td>BH-16 угловой или высокие двухрядные гнёзда</td>
+	<td>1</td>
+</tr>
+
+
+<tr><td colspan="3"><div class="bom_class">Кнопки</div></td></tr>
+
+<tr id="table_kSW65">
+	<td>SW65</td>
+	<td>Кнопка клавиши "пробел"</td>
+	<td>1</td>
+</tr>
+
+<tr id="table_kSW1-SW64_SW66-SW73">
+	<td>SW1&hellip;SW64, SW66&hellip;SW73</td>
+	<td>Остальные кнопки</td>
+	<td>72</td>
+</tr>
+
+
+</tbody></table>
+
+
+</div>
+
+<!-- плата клавиатуры -->
+<div>
+
 <h2>Чертёж платы клавиатуры</h2>
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -77,9 +915,54 @@ svg :target {
   onload='onLoad_keyboard(this, 338)'
   width="1200px" height="600px"
 >
-
   <image xlink:href="keyboard.svg" width="100%" />
 </svg>
+
+</div>
+
+</div>
+
+<h2>Управление</h2>
+
+<ul>
+<li>
+При наведении на строку таблицы подсвечивается красным эта строка и связанные с ней элементы.
+</li>
+
+<li>
+При нажатии на строку таблицы она и связанные элементы получают статус фиксированных и
+постоянную зелёную подсветку. Это состояние снимается повторным нажатием на эти фиксированные или
+другие (которые в свою очередь становятся фиксированными) строку или элементы.
+</li>
+
+<li>
+При наведении на элемент подсвечивается красным этот элемент и связанная с ним строка таблицы.
+</li>
+
+<li>
+При нажатии на элемент он, аналогичные элементы и связанная строка таблицы получают статус
+фиксированных и постоянную зелёную подсветку.
+Это состояние снимается повторным нажатием на эти фиксированные или
+другие (которые в свою очередь становятся фиксированными) строку или элементы.
+</li>
+
+<li>
+При нажатии на элемент с удержанием клавиши Ctrl происходит переход на страницу с полным списком
+элементов, на соответствующую нажатому элементу строку.
+</li>
+
+<li>
+Кнопка Pad отключает описанные выше реакции на нажатия и перемещение курсора и включает возможность
+переключения видимости дорожек платы по нажатию на контактные площадки, через которые эти дорожки проходят.
+Дорожки на лицевой стороне платы обозначены красным цветом, на тыльной &mdash; синим.
+</li>
+
+<li>
+Кнопка Foot возвращает обычный режим работы с посадочными местами элементов, убирая отображение всех дорожек.
+</li>
+
+
+</ul>
 
 </body>
 </html>

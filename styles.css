@@ -258,14 +258,10 @@ div:target {
   margin-left: 30px;
 }
 
-/* Класс для элемента при наведении курсора в SVG */
-.hollow-hover:hover {
-  fill: red;
-  fill-opacity: 0.5;
-  stroke: red;
-  stroke-opacity: 1.0;
-  /* Плавное изменение цвета */
-  transition: all 0.8s ease-in-out;
+/* Класс для затенения элемента при наведении курсора в SVG */
+.hollow-hover {
+  /* Плавное изменение свойств */
+  transition: all 0.5s ease-in-out;
 }
 
 /* Завеса во весь экран, затеняющее экран на время просмотра изображения */
