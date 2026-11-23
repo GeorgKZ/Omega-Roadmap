@@ -10955,7 +10955,7 @@ const dataMainBoard = [
         [ 'font', 1.016, 1.016, 0.2032, 0 ],
         'F.SilkS'
     ],
-    [ 'property', 'Value', '~{RST}/~{NMI}',
+    [ 'property', 'Value', 'RST/NMI',
         [ 'at', 0, 3.81, 0 ],
         [ 'font', 1.016, 0.9144, 0.2032, 1 ],
         'F.SilkS'

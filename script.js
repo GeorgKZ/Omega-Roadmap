@@ -1,5 +1,5 @@
-const svgNS = "http://www.w3.org/2000/svg";
-const xlinkNS = "http://www.w3.org/1999/xlink";
+const svgNS = 'http://www.w3.org/2000/svg';
+const xlinkNS = 'http://www.w3.org/1999/xlink';
 
 /**
  * Таблица преобразования между позиционными обозначениями однотипных элементов
@@ -68,6 +68,33 @@ const bomTranslateTable = [
                            'kSW71','kSW72','kSW73' ]
 ];
 
+/** Префикс позиционного обозначения элемента */
+const GlobalIdPrefix = [ '', 'k' ];
+
+/** Идентификаторы таблиц с левой стороны от рисунков плат */
+const GlobalLeftTableId = [ 'MainTable', 'KeyTable' ];
+
+/** Таблицы с элементами плат */
+const GlobalDataBoard = [ dataMainBoard, dataKeyBoard ];
+
+/** Массив [ hollowref, group ] ссылок на объекты посадочных площадок для MainBoard */
+var GlobalMainRefArray = [];
+
+/** Массив [ hollowref, group ] ссылок на объекты посадочных площадок для KeyBoard */
+var GlobalKeyRefArray = [];
+
+/** Таблицы с объектами посадочных площадок */
+const GlobalRefArray = [ GlobalMainRefArray, GlobalKeyRefArray ];
+
+/** Массив соответствия сегмент/сеть для MainBoard */
+var GlobalMainNetArray = [];
+
+/** Массив соответствия сегмент/сеть для KeyBoard */
+var GlobalKeyNetArray = [];
+
+/** Массивы соответствия сегмент/сеть */
+const GlobalNetArray = [ GlobalMainNetArray, GlobalKeyNetArray ];
+
 
 /**
  * Преобразование простого ID или Complex ID в список простых ID
@@ -120,15 +147,13 @@ function getFootListById(idList) {
 
   // Отметить все выделенные посадочные места
   for (const id of idList) {
+
     // Перебрать посадочные места, найти hollowref/group нужного по id
-    for (const r of GlobalMainRefArray) {
-      if (r != undefined && r[0].id == id) {
-        footList.push(r);
-      }
-    }
-    for (const r of GlobalKeyRefArray) {
-      if (r != undefined && r[0].id == id) {
-        footList.push(r);
+    for (const refArray of GlobalRefArray) {
+      for (const r of refArray) {
+        if (r != undefined && r[0].id == id) {
+          footList.push(r);
+        }
       }
     }
   }
@@ -139,6 +164,7 @@ const colourFixed =        '0,150,0';
 const colourFixedPointed = '0,255,0';
 const colourPointed =      '255,0,0';
 const tableAlpha    =      ',0.4';
+const colourFootprint =    '#008484';
 
 /**
  * Окрасить зафиксированние посадочное место
@@ -192,20 +218,7 @@ function colorFootprintClean(fp) {
   group.setAttributeNS(null,     'stroke-opacity', 0.0);
   hollowref.setAttributeNS(null, 'fill-opacity',   0.0);
   hollowref.setAttributeNS(null, 'stroke-opacity', 0.0);
-}
-
-/**
- * Получить из элемента-строки таблицы номер платы
- */
-function tableRowToBoardNum(row) {
-
-  if (row.id == '') return undefined;
-
-  // Очищеный идентификатор ряда таблицы (Убран начальный "table_")
-  const id = row.id.slice(6);
-
-  return id[0] == 'k' ? 1 : 0;
-}
+}                  
 
 /**
  * Получить из элемента-строки таблицы список
@@ -236,40 +249,35 @@ function isRowFixed(row) {
 const OldIC = 'Blue';
 const NewIC = 'Coral';
 
+/** Смещение по горизонтали текущего (во время onLoad) изображения */
+var GlobalOffsetX = undefined;
+/** Смещение по вертикали текущего изображения */
+var GlobalOffsetY = undefined;
+/** Ширина текущего изображения */
 var GlobalWidth = undefined;
-var GlobalViewWidth = undefined;
-var GlobalSvg_id = undefined;
+/** Ширина выведенного на экран изображения */
+var GlobalImageWidth = undefined;
+/** Элемент SVG, из которого вызван OnLoad */
+var GlobalSvg = undefined;
+
+
 var GlobalColour = undefined;
-var GlobalMainOrKey = undefined;
 var GlobalDot = undefined;
 
 /** Режим работы: true - выбор посадочных мест, false - площадок */
 var GlobalModeFootprint = undefined;
-
-/** Массив соответствия сегмент/сеть для MainBoard */
-var GlobalMainNetArray = [];
-
-/** Массив соответствия сегмент/сеть для KeyBoard */
-var GlobalKeyNetArray = [];
-
-/** Массив [ hollowref, group ] ссылок на объекты посадочных площадок для MainBoard */
-var GlobalMainRefArray = [];
-
-/** Массив [ hollowref, group ] ссылок на объекты посадочных площадок для KeyBoard */
-var GlobalKeyRefArray = [];
 
 /** Зафиксированная строка таблицы платы MainBoard или платы KeyBoard */
 var FixedRow = undefined;
 
 /**
  * Сдвинуть таблицу на строку row
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
  */
-function scrollToRow(row) {
+function scrollToRow(row, boardNum) {
 
-  const boardNum = tableRowToBoardNum(row);
-  if (boardNum === undefined) return;
-
-  const tableID = boardNum == 0 ? 'MainTable' : 'KeyTable';
+  const tableID = GlobalLeftTableId[boardNum];
 
   const container = document.getElementById(tableID);
   const rect = row.getBoundingClientRect();
@@ -286,11 +294,11 @@ function scrollToRow(row) {
   });
 }
 
-
-// Нарисовать рамку с названием рисунка в левом верхнем углу
+/**
+ * Нарисовать рамку с названием рисунка в левом верхнем углу
+ */
 function drawTitle(title) {
 
-  const svg = document.getElementById(GlobalSvg_id);
   const x = 15
   const y = 18;
   const h = 68;
@@ -298,37 +306,42 @@ function drawTitle(title) {
   const fontSize = 40;
 
   // Создать рамку для названия рисунка
-  var rect = document.createElementNS(svgNS,"rect");
-  rect.setAttributeNS(null,"x",x);
-  rect.setAttributeNS(null,"y",y);
-  rect.setAttributeNS(null,"width",w);
-  rect.setAttributeNS(null,"height",h);
-  rect.setAttributeNS(null,"fill","white");
-  rect.setAttributeNS(null,"stroke", "DarkCyan");
-  rect.setAttributeNS(null,"stroke-width",5.0);
-  rect.setAttributeNS(null,"rx",10.0);
-  svg.appendChild(rect);
+  var rect = document.createElementNS(svgNS,'rect');
+  rect.setAttributeNS(null,'x',x);
+  rect.setAttributeNS(null,'y',y);
+  rect.setAttributeNS(null,'width',w);
+  rect.setAttributeNS(null,'height',h);
+  rect.setAttributeNS(null,'fill','white');
+  rect.setAttributeNS(null,'stroke', 'DarkCyan');
+  rect.setAttributeNS(null,'stroke-width',5.0);
+  rect.setAttributeNS(null,'rx',10.0);
+  rect.style.pointerEvents = 'none';
+  GlobalSvg.appendChild(rect);
 
   // Создать текстовое название рисунка
-  var text = document.createElementNS(svgNS,"text");
-  text.setAttributeNS(null,"x",x+w/2);
-  text.setAttributeNS(null,"y",y+h/2 + fontSize * 0.1);
-  text.setAttributeNS(null,"font-size", fontSize.toString() + "px");
-  text.setAttributeNS(null,"fill", "Gold");
-  text.setAttributeNS(null,"stroke","Black");
-  text.setAttributeNS(null,"stroke-width",1.5);
-  text.setAttributeNS(null,"font-family","Noto Sans");
-  text.setAttributeNS(null,"font-weight","bold");
-  text.setAttributeNS(null,"text-anchor","middle");
-  text.setAttributeNS(null,"dominant-baseline","middle");
+  var text = document.createElementNS(svgNS,'text');
+  text.setAttributeNS(null,'x',x+w/2);
+  text.setAttributeNS(null,'y',y+h/2 + fontSize * 0.1);
+  text.setAttributeNS(null,'font-size', fontSize.toString() + 'px');
+  text.setAttributeNS(null,'fill', 'Gold');
+  text.setAttributeNS(null,'stroke','Black');
+  text.setAttributeNS(null,'stroke-width',1.5);
+  text.setAttributeNS(null,'font-family','Noto Sans');
+  text.setAttributeNS(null,'font-weight','bold');
+  text.setAttributeNS(null,'text-anchor','middle');
+  text.setAttributeNS(null,'dominant-baseline','middle');
+  text.setAttributeNS(null,'style','user-select: none;');
   text.appendChild(document.createTextNode(title));
-  svg.appendChild(text);
+  GlobalSvg.appendChild(text);
 }
 
 /**
  * Установить обработчики кнопок площадки <-> посадочные места
  */
 function addButtonsEvents() {
+
+  // Выход, если обработчики уже установлены
+  if (GlobalModeFootprint != undefined) return;
 
   // Установить начальное значение
   GlobalModeFootprint = true;
@@ -338,14 +351,11 @@ function addButtonsEvents() {
     GlobalModeFootprint = false;
 
     // Отключить механизм ссылок посадочных мест
-    for (const ref of GlobalMainRefArray) {
-      if (ref != undefined) {
-        (ref[0]).style.pointerEvents = 'none';
-      }
-    }
-    for (const ref of GlobalKeyRefArray) {
-      if (ref != undefined) {
-        (ref[0]).style.pointerEvents = 'none';
+    for (const refArray of GlobalRefArray) {
+      for (const ref of refArray) {
+        if (ref != undefined) {
+          (ref[0]).style.pointerEvents = 'none';
+        }
       }
     }
   });
@@ -355,57 +365,80 @@ function addButtonsEvents() {
     GlobalModeFootprint = true;
 
     // Отключить отображение дорожек
-    for (const line of GlobalMainNetArray) {
-      line[2] = false;
-      line[0].setAttributeNS(null,'stroke-opacity', 0.0);
-    }
-    for (const line of GlobalKeyNetArray) {
-      line[2] = false;
-      line[0].setAttributeNS(null,'stroke-opacity', 0.0);
+    for (const netArray of GlobalNetArray) {
+      for (const line of netArray) {
+        line[2] = false;
+        line[0].setAttributeNS(null,'stroke-opacity', 0.0);
+      }
     }
 
     // Включить механизм ссылок посадочных мест
-    for (const ref of GlobalMainRefArray) {
-      if (ref != undefined) {
-        (ref[0]).style.pointerEvents = 'auto';
+    for (const refArray of GlobalRefArray) {
+      for (const ref of refArray) {
+        if (ref != undefined) {
+          (ref[0]).style.pointerEvents = 'auto';
+        }
       }
     }
-    for (const ref of GlobalKeyRefArray) {
-      if (ref != undefined) {
-        (ref[0]).style.pointerEvents = 'auto';
-      }
-    }
-
-
   });
 }
 
 /**
- * Заполнить списки объектов посадочных мест и дорожек
+ * Заполнить списки объектов посадочных мест
  *
- * boardNum - 0 для MainBoard, 1 для KeyBoard
+ * boardMode - режим отображения элемента (true для рисунков плат, false для этапов сборки)
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
  */
-function collectArrays(dataBoard, refArray, netArray, boardNum) {
+function collectFootprints(boardNum, boardMode = true) {
 
-  for (let i = 0; i < dataBoard.length; i++) {
-    if (dataBoard[i][0] == 'footprint') {
-      refArray.push(drawFootprint(dataBoard[i], boardNum));
-    }
-    if (dataBoard[i][0] == 'segment') {
-      x1 = scaleCoordX(dataBoard[i][1]);
-      y1 = scaleCoordY(dataBoard[i][2]);
-      x2 = scaleCoordX(dataBoard[i][3]);
-      y2 = scaleCoordY(dataBoard[i][4]);
-      w = scaleCoord(dataBoard[i][5]);
-      layer = dataBoard[i][6];
-      net = dataBoard[i][7];
-      line = drawLine(x1, y1, x2, y2, w, layer, true);
-      netArray.push([line, net, false]);
+  for (const d of GlobalDataBoard[boardNum]) {
+    if (d[0] == 'footprint') {
+      GlobalRefArray[boardNum].push(drawFootprint(true, d, boardNum, boardMode));
     }
   }
 }
 
-function addTableEvents(tableID, refArray) {
+/**
+ * Заполнить списки объектов дорожек
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function collectTracks(boardNum) {
+
+  for (const d of GlobalDataBoard[boardNum]) {
+    if (d[0] == 'segment') {
+      x1 = scaleCoordX(d[1]);
+      y1 = scaleCoordY(d[2]);
+      x2 = scaleCoordX(d[3]);
+      y2 = scaleCoordY(d[4]);
+      w = scaleCoord(d[5]);
+      layer = d[6];
+      net = d[7];
+
+      var colour = ''
+      // Верхние дорожки
+      if (layer == 'F.Cu') colour = 'red';
+      // Нижние дорожки
+      if (layer == 'B.Cu') colour = 'blue';
+
+      if (colour == '') continue;
+
+      line = drawLine(x1, y1, x2, y2, w, colour, true);
+      GlobalNetArray[boardNum].push([line, net, false]);
+    }
+  }
+}
+
+/**
+ * Добавить обработчики событий левых таблиц
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function addTableEvents(boardNum) {
+
+  const tableID = GlobalLeftTableId[boardNum];
+  const refArray = GlobalRefArray[boardNum];
+
   // Получаем таблицу
   const table = document.getElementById(tableID);
 
@@ -486,6 +519,23 @@ function addTableEvents(tableID, refArray) {
     // Отключить в режиме "площадок"
     if (!GlobalModeFootprint) return;
 
+    // Переход только при нажатой клавише Ctrl
+    if (event.ctrlKey) {
+
+      // Выполнить переход как бы БЕЗ нажатия Ctrl
+      event.ctrlKey = false;
+
+      if (event.target.tagName == 'TD') {
+        // Элемент-ряд таблицы
+        const row = event.target.closest('tr');
+        if (row && table.contains(row) && row.id != '') {
+          // Переход на очищеный идентификатор ряда таблицы (Убран начальный "table_")
+          window.location.href = './bom.html#' + row.id.slice(6);
+        }
+      }
+      return;
+    }
+
     // Элемент, на который наведён курсор
     const target = event.target;
     if (target.tagName == 'TD') {
@@ -537,158 +587,102 @@ function addTableEvents(tableID, refArray) {
   });
 }
 
+/**
+ * Функция, выполняемая при загрузке изображения платы
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function onLoad_board(element, boardNum) {
 
-function onLoad_mainboard(element, viewWidth) {
-
-  GlobalSvg_id = element.id;
-  const computedWidth = window.getComputedStyle(document.querySelector('#' + GlobalSvg_id)).width;
-  GlobalWidth = parseInt(computedWidth, 10);
-
-  GlobalMainOrKey = true;
-  GlobalViewWidth = viewWidth;
+  GlobalSvg = element;
   GlobalColour = 'none';
   GlobalDot = 'none';
 
-/*
-  drawElementsFromTo('U', 1, 49);
-  drawElementsFromTo('C', 1, 94);
-  drawElementsFromTo('RR', 1, 10);
-  drawElementsFromTo('R', 1, 48);
-  drawElement('RY1');
-  drawElementsFromTo('L', 1, 3);
-  drawElement('D1');
-  drawElement('Q1');
-  drawElement('Q2');
-  drawElementsFromTo('Y', 1, 3);
-  drawElement('F1');
-  drawElementsFromTo('J', 1, 14);
-  drawElement('SLOT1');
-  drawElement('SLOT2');
-  drawElement('BT1');
-  drawElementsFromTo('JP', 1, 8);
-*/
+  drawBoard(boardNum);
 
-
-  collectArrays(dataMainBoard, GlobalMainRefArray, GlobalMainNetArray, 0);
+  collectFootprints(boardNum, true);
+  collectTracks(boardNum);
 
   addButtonsEvents();
 
-  addTableEvents('MainTable', GlobalMainRefArray);
+  addTableEvents(boardNum);
 }
 
-function onLoad_keyboard(element, viewWidth) {
-
-  GlobalSvg_id = element.id;
-  const computedWidth = window.getComputedStyle(document.querySelector('#' + GlobalSvg_id)).width;
-  GlobalWidth = parseInt(computedWidth, 10);
-
-  GlobalMainOrKey = false;
-  GlobalViewWidth = viewWidth;
-  GlobalColour = 'none';
-  GlobalDot = 'none';
-/*
-  drawElement('U1');
-  drawElement('U2');
-  drawElementsFromTo('D', 1, 6);
-  drawElement('R1');
-  drawElement('R2');
-  drawElement('R3');
-  drawElement('RN1');
-  drawElement('C1');
-  drawElement('C2');
-  drawElement('C3');
-  drawElement('J1');
-  drawElementsFromTo('SW', 1, 73);
-*/
-
-  collectArrays(dataKeyBoard, GlobalKeyRefArray, GlobalKeyNetArray, 1);
-  addTableEvents('KeyTable', GlobalKeyRefArray);
-}
-
+/**
+ * Пересчитать координаты SVG в экранные координаты
+ */
 function scaleCoord(coordMM) {
-  return coordMM * GlobalWidth / GlobalViewWidth;
+  return coordMM * GlobalImageWidth / GlobalWidth;
 }
 
+/**
+ * Пересчитать координаты SVG в экранные координаты с учётом горизонтального сдвига
+ */
 function scaleCoordX(coordMM) {
-  return (coordMM - (GlobalMainOrKey ? 11.0 : 39.5))  * GlobalWidth / GlobalViewWidth;
-  // Для mainboard.svg установлен viewBox="11    3 338 168"
-  // Для keyboard.svg  установлен viewBox="39.5 84 338 210"
+  return (coordMM + GlobalOffsetX) * GlobalImageWidth / GlobalWidth;
 }
 
+/**
+ * Пересчитать координаты SVG в экранные координаты с учётом вертикального сдвига
+ */
 function scaleCoordY(coordMM) {
-  return (coordMM - (GlobalMainOrKey ? 3.0 : 84.0))  * GlobalWidth / GlobalViewWidth;
-  // Для mainboard.svg установлен viewBox="11    3 338 168"
-  // Для keyboard.svg  установлен viewBox="39.5 84 338 210"
+  return (coordMM + GlobalOffsetY) * GlobalImageWidth / GlobalWidth;
 }
 
-// Изобразить отрезок 'gr_line','fp_line','segment'
-function drawLine(x1,y1,x2,y2,w,layer,trace,parent=undefined) {
+/**
+ * Нарисовать отрезок
+ */
+function drawLine(x1,y1,x2,y2,w,colour,trace,parent=undefined) {
 
-  if (layer == 'Dwgs.User' || layer == 'Eco2.User') return;
-
-  // Контур
-  if (layer == 'Edge.Cuts') {
-    colour = '#DADA66';
+  if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
+    colour = GlobalColour;
     w = 3.0;
-  // Шелкография
-  } else if (layer == 'F.SilkS' || layer == 'B.SilkS') {
-    colour = 'black'; //'rgb(200,255,200)';
-  // Верхние дорожки
-  } else if (layer == 'F.Cu') {
-    colour = 'rgb(255,0,0)';
-  // Нижние дорожки
-  } else if (layer == 'B.Cu') {
-    colour = 'rgb(0,0,255)';
-  } else {
-    colour = 'black';
   }
-
-  const svg = document.getElementById(GlobalSvg_id);
 
   var line = document.createElementNS(svgNS,'line');
   line.setAttributeNS(null,'x1',x1);
   line.setAttributeNS(null,'y1',y1);
   line.setAttributeNS(null,'x2',x2);
   line.setAttributeNS(null,'y2',y2);
+
   if (trace) {
     line.setAttributeNS(null,'stroke', colour);
     line.setAttributeNS(null,'stroke-width', w);
     line.setAttributeNS(null,'stroke-opacity', 0.0);
     line.setAttributeNS(null,'style', 'stroke-linecap:round; stroke-linejoin:round; pointer-events:none;');
   } else {
+    if (w > 0) {
+      line.setAttributeNS(null,'stroke', colour);
+      line.setAttributeNS(null,'stroke-width', w);
+    }
     line.setAttributeNS(null,'style', 'stroke-linecap:round; stroke-linejoin:round;');
   }
 
-  (parent == undefined ? svg : parent).appendChild(line);
+  if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
+    line.setAttributeNS(null,'stroke-dasharray', GlobalDot);
+  }
+
+  (parent == undefined ? GlobalSvg : parent).appendChild(line);
   return line;
 }
 
-// Функция для вычисления расстояния между двумя точками
+/**
+ * Вычислить расстояние между двумя точками
+ */
 function dist(a, b) {
     return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]));
 }
 
+/**
+ * Нарислвать дугу
+ */
+function drawArc(sx,sy,mx,my,ex,ey,w,colour,parent=undefined) {
 
-function drawArc(sx,sy,mx,my,ex,ey,w,layer,parent=undefined) {
-  if (layer == 'Dwgs.User' || layer == 'Eco2.User') return;
-
-  // Контур
-  if (layer == 'Edge.Cuts') {
-    colour = '#DADA66';
-  // Шелкография
-  } else if (layer == 'F.SilkS' || layer == 'B.SilkS') {
-    colour = 'black'; // 'green';
-  // Верхние дорожки
-  } else if (layer == 'F.Cu') {
-    colour = 'red';
-  // Нижние дорожки
-  } else if (layer == 'B.Cu') {
-    colour = 'blue';
-  } else {
-    colour = 'black';
+  if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
+    colour = GlobalColour;
+    w = 3.0;
   }
 
-  const svg = document.getElementById(GlobalSvg_id);
   var arc = document.createElementNS(svgNS,'path');
 
   const start = [sx, sy];
@@ -721,22 +715,27 @@ function drawArc(sx,sy,mx,my,ex,ey,w,layer,parent=undefined) {
 
   arc.setAttributeNS(null, 'd',d);
   arc.setAttributeNS(null, 'fill', 'none');
-//  arc.setAttributeNS(null,'stroke', colour);
-//  arc.setAttributeNS(null,'stroke-width', w);
+  if (w > 0) {
+    arc.setAttributeNS(null,'stroke', colour);
+    arc.setAttributeNS(null,'stroke-width', w);
+  }
   arc.setAttributeNS(null, 'style', 'stroke-linecap:round; stroke-linejoin:round;');
 
-  (parent == undefined ? svg : parent).appendChild(arc);
+  if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
+    arc.setAttributeNS(null,'stroke-dasharray', GlobalDot);
+  }
+
+  (parent == undefined ? GlobalSvg : parent).appendChild(arc);
 
   return r;
 }
 
-
-
+/**
+ * Нарисовать переходное отверстие
+ */
 function drawVia(x,y,size,drill,net) {
 
   const colour = 'rgb(100,100,100)';
-
-  const svg = document.getElementById(GlobalSvg_id);
 
   const pad = document.createElementNS(svgNS,'circle');
   pad.setAttributeNS(null,'cx',scaleCoordX(x));
@@ -745,37 +744,25 @@ function drawVia(x,y,size,drill,net) {
   pad.setAttributeNS(null,'stroke', colour);
   pad.setAttributeNS(null,'fill', 'none');
   pad.setAttributeNS(null,'stroke-width', 0.4);
-  svg.appendChild(pad);
+  GlobalSvg.appendChild(pad);
 
   const circle = document.createElementNS(svgNS,'circle');
   circle.setAttributeNS(null,'cx',scaleCoordX(x));
   circle.setAttributeNS(null,'cy',scaleCoordY(y));
   circle.setAttributeNS(null,'r',scaleCoord(drill/2));
-  svg.appendChild(circle);
+  GlobalSvg.appendChild(circle);
 }
 
-// Изобразить окружность 'fp_circle'
-function drawCircle(cx,cy,r,w,stoke_type,fill,layer,parent=undefined) {
+/**
+ * Нарисовать окружность
+ */
+function drawCircle(cx,cy,r,w,stoke_type,fill,colour,parent=undefined) {
 
-  if (layer == 'Dwgs.User' || layer == 'Eco2.User') return;
-
-  // Контур
-  if (layer == 'Edge.Cuts') {
-    colour = '#DADA66';
-  // Шелкография
-  } else if (layer == 'F.SilkS' || layer == 'B.SilkS') {
-    colour = 'black'; // 'green';
-  // Верхние дорожки
-  } else if (layer == 'F.Cu') {
-    colour = 'red';
-  // Нижние дорожки
-  } else if (layer == 'B.Cu') {
-    colour = 'blue';
-  } else {
-    colour = 'black';
+  if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
+    colour = GlobalColour;
+    w = 3.0;
   }
 
-  const svg = document.getElementById(GlobalSvg_id);
   const circle = document.createElementNS(svgNS,'circle');
   circle.setAttributeNS(null,'cx',cx);
   circle.setAttributeNS(null,'cy',cy);
@@ -783,17 +770,31 @@ function drawCircle(cx,cy,r,w,stoke_type,fill,layer,parent=undefined) {
 
   if (fill) {
     circle.setAttributeNS(null, 'stroke', 'none');
+    if (colour != '') circle.setAttributeNS(null, 'fill', colour);
   } else {
-//  circle.setAttributeNS(null,'stroke-width', w);
+    if (w > 0) circle.setAttributeNS(null,'stroke-width', w);
+    if (colour != '') circle.setAttributeNS(null, 'stroke', colour);
     circle.setAttributeNS(null, 'fill', 'none');
   }
 
-  (parent == undefined ? svg : parent).appendChild(circle);
+  if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
+    circle.setAttributeNS(null, 'stroke-dasharray', GlobalDot);
+  }
+
+  (parent == undefined ? GlobalSvg : parent).appendChild(circle);
 }
 
-function drawPad(boardNum, x, y, size, drill, shape, net, parent=undefined) {
+/**
+ * Нарисовать посадочную площадку
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function drawPad(boardNum, x, y, size, drill, shape, colour, net, parent=undefined) {
 
-  const svg = document.getElementById(GlobalSvg_id);
+  if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
+    colour = GlobalColour;
+    w = 3.0;
+  }
 
   if (shape == 'circle')  {
     const pad = document.createElementNS(svgNS,'circle');
@@ -801,8 +802,9 @@ function drawPad(boardNum, x, y, size, drill, shape, net, parent=undefined) {
     pad.setAttributeNS(null,'cy',y);
     pad.setAttributeNS(null,'r', size/2);
     pad.setAttributeNS(null,'stroke-width', 0.4);
-    pad.setAttributeNS(null,'fill', 'none');
-    (parent == undefined ? svg : parent).appendChild(pad);
+    if (colour != '') pad.setAttributeNS(null,'fill', colour);
+    else              pad.setAttributeNS(null,'fill', 'none');
+    (parent == undefined ? GlobalSvg : parent).appendChild(pad);
   
   } else if (shape == 'rect') {
     const pad = document.createElementNS(svgNS,'rect');
@@ -811,41 +813,45 @@ function drawPad(boardNum, x, y, size, drill, shape, net, parent=undefined) {
     pad.setAttributeNS(null,'width', size);
     pad.setAttributeNS(null,'height', size);
     pad.setAttributeNS(null,'stroke-width', 0.4);
-    pad.setAttributeNS(null,'fill', 'none');
-    (parent == undefined ? svg : parent).appendChild(pad);
+    if (colour != '') pad.setAttributeNS(null,'fill', colour);
+    else              pad.setAttributeNS(null,'fill', 'none');
+    (parent == undefined ? GlobalSvg : parent).appendChild(pad);
   }
 
-  const hole = document.createElementNS(svgNS,'circle');
-  hole.setAttributeNS(null,'cx', x);
-  hole.setAttributeNS(null,'cy', y);
-  hole.setAttributeNS(null,'r', drill/2);
-  hole.setAttributeNS(null,'stroke', 'none');
-  (parent == undefined ? svg : parent).appendChild(hole);
+  if (colour != '') {
 
-  const hollow = document.createElementNS(svgNS,'circle');
-  hollow.setAttributeNS(null,'cx',x);
-  hollow.setAttributeNS(null,'cy',y);
-  hollow.setAttributeNS(null,'r', size/2);
-  hollow.setAttributeNS(null,'stroke', 'none');
-  hollow.setAttributeNS(null,'fill', 'black');
-  hollow.setAttributeNS(null,'fill-opacity', 0);
-  svg.appendChild(hollow);
+    const hole = document.createElementNS(svgNS,'circle');
+    hole.setAttributeNS(null,'cx', x);
+    hole.setAttributeNS(null,'cy', y);
+    hole.setAttributeNS(null,'r', drill/2);
+    hole.setAttributeNS(null,'stroke', 'none');
+    hole.setAttributeNS(null,'fill', '#C0C0C0');
+    (parent == undefined ? GlobalSvg : parent).appendChild(hole);
 
-  // Добавление обработчика события 'click'
-  hollow.addEventListener('click', function(event) {
-    if (GlobalModeFootprint) return;
-    swapShowTrace(net, boardNum);
-    event.stopPropagation();
-  });
+  } else if (net != '') {
+
+    const hollow = document.createElementNS(svgNS,'circle');
+    hollow.setAttributeNS(null,'cx',x);
+    hollow.setAttributeNS(null,'cy',y);
+    hollow.setAttributeNS(null,'r', size/2);
+    hollow.setAttributeNS(null,'stroke', 'none');
+    hollow.setAttributeNS(null,'fill', 'black');
+    hollow.setAttributeNS(null,'fill-opacity', 0);
+    GlobalSvg.appendChild(hollow);
+
+    // Добавление обработчика события 'click'
+    hollow.addEventListener('click', function(event) {
+      if (GlobalModeFootprint) return;
+      swapShowTrace(net, boardNum);
+      event.stopPropagation();
+    });
+  }
 }
 
-function drawProperty(type,value,x,y,angle,font_x,font_y,font_t,font_italic,layer,justify) {
-
-  if (layer != 'F.SilkS') return;
-
-  const svg = document.getElementById(GlobalSvg_id);
-
-  const colour = 'rgb(100,100,100)';
+/**
+ * Нарисовать текстовую строку
+ */
+function drawText(type,value,x,y,angle,font_x,font_y,font_t,font_italic,colour,justify) {
 
   const splitted = value.split(/\r?\n/);
 
@@ -859,28 +865,31 @@ function drawProperty(type,value,x,y,angle,font_x,font_y,font_t,font_italic,laye
     text.setAttributeNS(null,'font-size', scaleCoord(font_x)*1.49);
     text.setAttributeNS(null,'font-family', 'Noto Sans');
     if (!justify) {
-      text.setAttributeNS(null,'style', 'text-anchor: start;');
+      text.setAttributeNS(null,'style', 'user-select: none; text-anchor: start;');
     } else {
-      text.setAttributeNS(null,'style', 'text-anchor: middle;');
+      text.setAttributeNS(null,'style', 'user-select: none; text-anchor: middle;');
     }
     text.setAttributeNS(null,'dominant-baseline', 'middle');
 
     text.setAttributeNS(null,'lengthAdjust', 'spacing');
-    w = splitted[strnum].length * scaleCoord(font_x) * 1.48 * 0.55; // scaleCoord(font_y)*0.92;
-    text.setAttributeNS(null,'textLength', w);
+//    w = splitted[strnum].length * scaleCoord(font_x) * 1.49 * 0.55; // scaleCoord(font_y)*0.92;
+//    text.setAttributeNS(null,'textLength', w);
 
-    text.setAttributeNS(null,'stroke', 'black');
+    text.setAttributeNS(null,'stroke', colour);
     text.setAttributeNS(null,'stroke-width', scaleCoord(font_t)*0.3);
 
-    text.setAttributeNS(null,'fill', 'black');
+    text.setAttributeNS(null,'fill', colour);
     if (font_italic) {
       text.setAttributeNS(null,'font-style', 'italic');
     }
     text.textContent = splitted[strnum];
-    svg.appendChild(text);
+    GlobalSvg.appendChild(text);
   }
 }
 
+/**
+ * Получить идентификатор посадочного места
+ */
 function getTitle(data) {
   if (data[0] != 'footprint') return '';
 
@@ -892,7 +901,9 @@ function getTitle(data) {
   return '';
 }
 
-// Добавить точку к ограничивающему прямоугольнику bound[xmin, xmax, ymin, ymax]
+/**
+ * Добавить точку к ограничивающему прямоугольнику bound[xmin, xmax, ymin, ymax]
+ */
 function addBound(bound, x, y) {
   var xmin = bound[0] < x ? bound[0] : x;
   var xmax = bound[1] > x ? bound[1] : x;
@@ -901,16 +912,23 @@ function addBound(bound, x, y) {
   return [ xmin, xmax, ymin, ymax ];
 }
 
-function drawFootprint(data, boardNum) {
+/**
+ * Нарисовать посадочное место
+ *
+ * isHollow - режим отображения (true - с невидимой зоной, false - просто рисунок)
+ * data - строка таблицы dataMainBoard или dataKeyBoard
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ * boardMode - режим отображения элемента (true для рисунков плат, false для этапов сборки)
+ */
+function drawFootprint(isHollow, data, boardNum, boardMode) {
 
   // Позиционное обозначение элемента
   const title = getTitle(data);
 
   // Если элемент не имеет позиционного обознечения, то вернуть неопределённое значение
-  if (title == '') return undefined;
+  if (isHollow && title == '') return undefined;
 
-  const titleAddon = boardNum == 0 ? '' : 'k';
-
+  // Подготовить параметры для поворота изображения вокруг точки установки
   var x = 0;
   var y = 0;
   var angle = 0;
@@ -924,16 +942,11 @@ function drawFootprint(data, boardNum) {
   const cs = Math.cos(-angle * Math.PI / 180);
   const sn = Math.sin(-angle * Math.PI / 180);
 
-  // Свойства группы элементов
+  // Группа элементов посадочного места
   const group = document.createElementNS(svgNS, 'g');
 
-// На будущее
-// if (GlobalDot != "none") {
-//   group.setAttributeNS(null,"stroke-dasharray", GlobalDot);
-// }
-
-  group.classList.add('hollow-hover');
-  document.getElementById(GlobalSvg_id).appendChild(group);
+  if (isHollow) group.classList.add('hollow-hover');
+  GlobalSvg.appendChild(group);
 
   // Ограничивающий прямоугольник (xmin, xmax, ymin, ymax)
   var bound = [100000, -100000, 100000, -100000 ];
@@ -951,7 +964,11 @@ function drawFootprint(data, boardNum) {
 
       if (layer != 'F.SilkS') continue;
 
-      drawLine(sx, sy, ex, ey, w, layer, false, group);
+      if (isHollow) {
+        drawLine(sx, sy, ex, ey, -1, '',       false, group);
+      } else {
+        drawLine(sx, sy, ex, ey, w, colourFootprint, false, group);
+      }
       bound = addBound(bound, sx, sy);
       bound = addBound(bound, ex, ey);
     }
@@ -968,14 +985,16 @@ function drawFootprint(data, boardNum) {
 
       if (layer != 'F.SilkS') continue;
 
-      const r = drawArc(sx, sy, mx, my, ex, ey, w, layer, group);
-
+      var r; 
+      if (isHollow) {
+        r = drawArc(sx, sy, mx, my, ex, ey, -1, '', group);
+      } else {
+        r = drawArc(sx, sy, mx, my, ex, ey, w, colourFootprint, group);
+      }
       hradi = hradi > r ? hradi : r;
-
       bound = addBound(bound, sx, sy);
       bound = addBound(bound, mx, my);
       bound = addBound(bound, ex, ey);
-
     }
 
     if (data[i][0] == 'fp_circle') {
@@ -997,9 +1016,13 @@ function drawFootprint(data, boardNum) {
 
       // Радиус как растояние от точки center до точки end
       const r = scaleCoord(Math.sqrt((cx0 - ex0) * (cx0 - ex0) + (cy0 - ey0) * (cy0 - ey0)));
-      hradi = hradi > r ? hradi : r;
 
-      drawCircle(cx, cy, r, w, stroke_type, fill, layer, group);
+      if (isHollow) {
+        drawCircle(cx, cy, r, w, stroke_type, fill, '', group);
+      } else {
+        drawCircle(cx, cy, r, w, stroke_type, fill, colourFootprint, group);
+      }
+      hradi = hradi > r ? hradi : r;
       bound = addBound(bound, cx - r, cy - r);
       bound = addBound(bound, cx + r, cy + r);
     }
@@ -1011,17 +1034,20 @@ function drawFootprint(data, boardNum) {
       const drill = scaleCoord(data[i][4]);
       const shape = data[i][2];
       const net = data[i][5];
-      drawPad(boardNum, px, py, size, drill, shape, net, group);
+
+      if (isHollow) {
+        drawPad(boardNum, px, py, size, drill, shape, '', net, group);
+      } else {
+        drawPad(boardNum, px, py, size, drill, shape, colourFootprint, net, group);
+      }
     }
 
-/*
-    if (data[i][0] == 'property' || data[i][0] == 'fp_text') {
-      drawProperty(
-        data[i][1],
-        data[i][2],
-        data[i][3][1] * cs - data[i][3][2] * sn + x,
-        data[i][3][1] * sn + data[i][3][2] * cs + y,
-        angle ==   0 && data[i][3][3] ==   0 ?   0 :
+    if (!isHollow && (data[i][0] == 'property' || data[i][0] == 'fp_text')) {
+      const type = data[i][1]; // Value/Reference
+      const value = data[i][2];
+      const tx = data[i][3][1] * cs - data[i][3][2] * sn + x;
+      const ty = data[i][3][1] * sn + data[i][3][2] * cs + y;
+      const tangle = angle ==   0 && data[i][3][3] ==   0 ?   0 :
         angle ==   0 && data[i][3][3] ==  90 ? -90 :
         angle ==   0 && data[i][3][3] == 180 ?   0 :
         angle ==  90 && data[i][3][3] == 270 ? -90 :
@@ -1030,19 +1056,21 @@ function drawFootprint(data, boardNum) {
         angle == -90 && data[i][3][3] ==  90 ? -90 :
         angle == -90 && data[i][3][3] == 180 ?   0 :
         angle == -90 && data[i][3][3] == 270 ? -90 :
-        0,
-        data[i][4][1],
-        data[i][4][2],
-        data[i][4][3],
-        data[i][4][4],
-        data[i][5],
-        data[i][0] == 'fp_text' ? data[i][6] : 1
-                  );
+        0;
+      const font_x = data[i][4][1];
+      const font_y = data[i][4][2];
+      const font_t = data[i][4][3];
+      const font_i = data[i][4][4];
+      const layer = data[i][5];
+      const justify = data[i][0] == 'fp_text' ? data[i][6] : 1;
+
+      if (layer != 'F.SilkS') continue;
+
+      drawText(type,value,tx,ty,tangle,font_x,font_y,font_t,font_i,colourFootprint,justify);
     }
-*/
   }
 
-  // Нет элементов шелкографии. Определить габариты по площадкам.
+  // Нет или недостаточно элементов шелкографии. Определить габариты по площадкам.
   if (bound[0] == 100000 || bound[1] == -100000 || bound[2] == 100000 || bound[3] == -100000) {
     for (let i = 0; i < data.length; i++) {
       if (data[i][0] == 'pad') {
@@ -1058,20 +1086,63 @@ function drawFootprint(data, boardNum) {
     }
   }
 
-  // Создать обычно невидимую (при наведении заполняется фоном) область
-  // для определения "зоны наведения курсора"
+  if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
+
+    // Создать текстовое обозначение элемента
+    var text = document.createElementNS(svgNS,'text');
+    const w = bound[1] - bound[0];
+    const h = bound[3] - bound[2];
+    const x = bound[0] + w/2;
+    const y = bound[2] + h/2;
+
+    var fontSize;
+    if (w < 30) {
+      fontSize = w * 0.85;
+      text.setAttributeNS(null,'transform', 'rotate(-90 ' + x.toString() + ' ' + y.toString() + ')');
+    } else {
+      fontSize = w / title.length * 1.4;
+      if (h < fontSize) {
+        fontSize = h * 0.85;
+      }
+    }
+
+    text.setAttributeNS(null,'x', x);
+    text.setAttributeNS(null,'y', y + fontSize * 0.1);
+    text.setAttributeNS(null,'font-size', fontSize.toString() + 'px');
+    text.setAttributeNS(null,'fill', GlobalColour);
+    text.setAttributeNS(null,'stroke','black');
+    text.setAttributeNS(null,'stroke-width',0.5);
+    text.setAttributeNS(null,'font-family','Noto Sans');
+    text.setAttributeNS(null,'font-weight','bold');
+    text.setAttributeNS(null,'text-anchor','middle');
+    text.setAttributeNS(null,'dominant-baseline','middle');
+    text.setAttributeNS(null,'style', 'user-select: none; pointer-events: none;');
+    text.textContent = title;
+    GlobalSvg.appendChild(text);
+  }
+
+
+  if (!isHollow) return group;
+
+  const titleAddon = GlobalIdPrefix[boardNum];
+
+  // Создать обычно невидимую (при наведении, фиксации заполняется фоном) область
   var hollowref = document.createElementNS(svgNS,'rect');
   hollowref.setAttributeNS(null, 'x', bound[0]);
   hollowref.setAttributeNS(null, 'y', bound[2]);
   hollowref.setAttributeNS(null, 'width', bound[1] - bound[0]);
   hollowref.setAttributeNS(null, 'height', bound[3] - bound[2]);
   hollowref.setAttributeNS(null, 'rx', hradi);
+
   // Идентификатор для ссылки извне
-  hollowref.setAttributeNS(null, 'id', titleAddon + title);
+  if (boardMode) {
+    hollowref.setAttributeNS(null, 'id', titleAddon + title);
+  }
+
   // Принадлежность к классу hollow-hover для появления при наведении курсора
   hollowref.classList.add('hollow-hover');
   // Добавить к документу
-  document.getElementById(GlobalSvg_id).appendChild(hollowref);
+  GlobalSvg.appendChild(hollowref);
 
   // Параметры посадочного места для перекраски
   const fp = [ hollowref, group ];
@@ -1091,6 +1162,12 @@ function drawFootprint(data, boardNum) {
    */
   hollowref.addEventListener('mouseover', function() {
 
+    if (!boardMode) {
+      // Подсветить элемент как указанный
+      colorFootprintPointed(fp);
+      return;
+    }
+
     // Отключить в режиме "площадок"
     if (!GlobalModeFootprint) return;
 
@@ -1109,7 +1186,7 @@ function drawFootprint(data, boardNum) {
       row.style.backgroundColor = 'rgba(' + colourPointed + tableAlpha + ')';
     }
     // Прокрутить таблицу на эту строку
-    scrollToRow(row);
+    scrollToRow(row, boardNum);
   });
 
   /**
@@ -1117,6 +1194,12 @@ function drawFootprint(data, boardNum) {
    * при уходе курсора из его области
    */
   hollowref.addEventListener('mouseout', function() {
+
+    if (!boardMode) {
+      // Убрать подсветку элемента
+      colorFootprintClean(fp);
+      return;
+    }
 
     // Отключить в режиме "площадок"
     if (!GlobalModeFootprint) return;
@@ -1136,160 +1219,285 @@ function drawFootprint(data, boardNum) {
       row.style.backgroundColor = '';
     }
   });
-
-
+  
   /**
    * Привязать переход по ссылке или другие действия к нажатию
    * на посадочное место
    */
   hollowref.addEventListener('click', function(event) {
 
+    if (!boardMode) {
+      // Выполнить переход как бы БЕЗ нажатия Ctrl
+      window.location.href = './bom.html#' + idToComplexId(titleAddon + title);
+      return;
+    }
+
     // Отключить в режиме "площадок"
     if (!GlobalModeFootprint) return;
 
     // Переход только при нажатой клавише Ctrl
     if (event.ctrlKey) {
-        // Выполнить переход как бы БЕЗ нажатия Ctrl
-        event.ctrlKey = false;
-        window.location.href = './bom.html#' + idToComplexId(titleAddon + title);
+      // Выполнить переход как бы БЕЗ нажатия Ctrl
+      event.ctrlKey = false;
+      window.location.href = './bom.html#' + idToComplexId(titleAddon + title);
+      return;
+    }
+
+    event.preventDefault();
+
+    // ID нажатого элемента
+    const id = titleAddon + title;
+
+    // Идентификатор строки левой таблицы (без 'table_')
+    const tableID = idToComplexId(id)
+
+    // Определить строку в левой таблице по обозначению элемента
+    const row = document.getElementById('table_' + tableID);
+    // Идентификаторы элементов, соответсвующие строке левой таблицы
+    idList = complexIdToIdList(tableID);
+
+    // Список посадочных мест одинаковых элементов
+    footList = getFootListById(idList);
+
+    // Нажато фиксированное посадочное место
+    if (isRowFixed(row)) {
+      // Отметить строку как указанную
+      // Прокручивать таблицу не надо, это сделано при наведении курсора
+      row.style.backgroundColor = 'rgba(' + colourPointed + tableAlpha + ')';
+
+      // Отметить посадочные места как указанные
+      for (const f of footList) {
+        colorFootprintClean(f);
+      }
+      // Отметить посадочное место, на котором указатель, как указанное
+      colorFootprintPointed(fp);
+
+      // Сбросить статус фиксированной строки
+      FixedRow = undefined;
+
+    // Нажато не фиксированное посадочное место
     } else {
-      event.preventDefault();
 
-      // ID нажатого элемента
-      const id = titleAddon + title;
+      // Если была предыдущая фиксированная строка
+      if (FixedRow != undefined) {
+        // Очистить цвет предыдущей фиксированной строки
+        FixedRow.style.backgroundColor = '';
 
-      // Идентификатор строки левой таблицы (без 'table_')
-      const tableID = idToComplexId(id)
-
-      // Определить строку в левой таблице по обозначению элемента
-      const row = document.getElementById('table_' + tableID);
-      // Идентификаторы элементов, соответсвующие строке левой таблицы
-      idList = complexIdToIdList(tableID);
-
-      // Список посадочных мест одинаковых элементов
-      footList = getFootListById(idList);
-
-      // Нажато фиксированное посадочное место
-      if (isRowFixed(row)) {
-        // Отметить строку как указанную
-        // Прокручивать таблицу не надо, это сделано при наведении курсора
-        row.style.backgroundColor = 'rgba(' + colourPointed + tableAlpha + ')';
-
-        // Отметить посадочные места как указанные
-        for (const f of footList) {
-          colorFootprintClean(f);
+        // Очистить цвет предыдущих фиксированных элементов
+        const oldFootList = tableRowToFootList(FixedRow);
+        if (oldFootList.length != 0) {
+          for (const f of oldFootList) {
+            colorFootprintClean(f);
+          }
         }
         // Отметить посадочное место, на котором указатель, как указанное
         colorFootprintPointed(fp);
-
-        // Сбросить статус фиксированной строки
-        FixedRow = undefined;
-
-      // Нажато не фиксированное посадочное место
-      } else {
-
-        // Если была предыдущая фиксированная строка
-        if (FixedRow != undefined) {
-          // Очистить цвет предыдущей фиксированной строки
-          FixedRow.style.backgroundColor = '';
-
-          // Очистить цвет предыдущих фиксированных элементов
-          const oldFootList = tableRowToFootList(FixedRow);
-          if (oldFootList.length != 0) {
-            for (const f of oldFootList) {
-              colorFootprintClean(f);
-            }
-          }
-          // Отметить посадочное место, на котором указатель, как указанное
-          colorFootprintPointed(fp);
-        }
-
-        // Окрасить строку как фиксированную указанную
-        row.style.backgroundColor = 'rgba(' + colourFixedPointed + tableAlpha + ')';
-        // Отметить элементы как фиксированные указанные
-        for (const f of footList) {
-          colorFootprintFixedPointed(f);
-        }
-        // Установить статус фиксированной строки
-        FixedRow = row;
       }
+
+      // Окрасить строку как фиксированную указанную
+      row.style.backgroundColor = 'rgba(' + colourFixedPointed + tableAlpha + ')';
+      // Отметить элементы как фиксированные указанные
+      for (const f of footList) {
+        colorFootprintFixedPointed(f);
+      }
+      // Установить статус фиксированной строки
+      FixedRow = row;
     }
   });
 
   return fp;
 }
 
+/**
+ * Переключить отображение дорожек платы
+ * 
+ * netName - имя сети, к которой относится дорожка
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function swapShowTrace(netName, boardNum) {
 
-function drawTracks() {
-
-  for (let i = 0; i < dataMainBoard.length; i++) {
-    if (dataMainBoard[i][0] == 'gr_line') {
-      const x1 = scaleCoordX(dataMainBoard[i][1]);
-      const y1 = scaleCoordY(dataMainBoard[i][2]);
-      const x2 = scaleCoordX(dataMainBoard[i][3]);
-      const y2 = scaleCoordY(dataMainBoard[i][4]);
-      const w = scaleCoord(dataMainBoard[i][5]);
-
-      drawLine(x1, x2, y1, y2, w, dataMainBoard[i][7], false);
-    }
-    if (dataMainBoard[i][0] == 'gr_arc') {
-      const sx = scaleCoordX(data[i][1]);
-      const sy = scaleCoordY(data[i][2]);
-      const mx = scaleCoordX(data[i][3]);
-      const my = scaleCoordY(data[i][4]);
-      const ex = scaleCoordX(data[i][5]);
-      const ey = scaleCoordY(data[i][6]);
-      const w = scaleCoord(data[i][7]);
-
-      drawArc(sx, sy, mx, my, ex, ey, w, dataMainBoard[i][9]);
-    }
-    if (dataMainBoard[i][0] == 'via') {
-      drawVia(
-              dataMainBoard[i][1][1],
-              dataMainBoard[i][1][2],
-              dataMainBoard[i][2],
-              dataMainBoard[i][3],
-              dataMainBoard[i][4],
-             );
-    }
-
-    if (dataMainBoard[i][0] == 'gr_text') {
-      drawProperty(
-        '',
-        dataMainBoard[i][1],
-        dataMainBoard[i][2][1],
-        dataMainBoard[i][2][2],
-        -dataMainBoard[i][2][3],
-        dataMainBoard[i][3][1],
-        dataMainBoard[i][3][2],
-        dataMainBoard[i][3][3],
-        dataMainBoard[i][3][4],
-        dataMainBoard[i][4],
-        dataMainBoard[i][5]
-                  );
+  for (const a of GlobalNetArray[boardNum]) {
+    if (a[1] == netName) {
+      const line = a[0];
+      // переключить отображение выбранной сети
+      a[2] = !a[2];
+      line.setAttributeNS(null,'stroke-opacity', a[2] ? 1.0 : 0.0);
     }
   }
 }
 
-function swapShowTrace(netName, boardNum) {
+/**
+ * Нарисовать плату
+ *
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function drawBoard(boardNum) {
 
-  if (boardNum == 0) {
-    for (const a of GlobalMainNetArray) {
-      if (a[1] == netName) {
-        const line = a[0];
-        // переключить отображение выбранной сети
-        a[2] = !a[2];
-        line.setAttributeNS(null,'stroke-opacity', a[2] ? 1.0 : 0.0);
-      }
-    }
-  } else if (boardNum == 1) {
-    for (const a of GlobalKeyNetArray) {
-      if (a[1] == netName) {
-        const line = a[0];
-        // переключить отображение выбранной сети
-        a[2] = !a[2];
-        line.setAttributeNS(null,'stroke-opacity', a[2] ? 1.0 : 0.0);
-      }
+  const dataBoard = GlobalDataBoard[boardNum];
+
+  // Ограничивающий прямоугольник (xmin, xmax, ymin, ymax)
+  var bound = [100000, -100000, 100000, -100000 ];
+  for (const d of dataBoard) {
+    if (d[0] == 'gr_arc') {
+
+      const sx = d[1];
+      const sy = d[2];
+      bound = addBound(bound, sx, sy);
+
+      const mx = d[3];
+      const my = d[4];
+      bound = addBound(bound, mx, my);
+
+      const ex = d[5];
+      const ey = d[6];
+      bound = addBound(bound, ex, ey);
+
+    } else if (d[0] == 'gr_line') {
+
+      const x1 = d[1];
+      const y1 = d[2];
+      bound = addBound(bound, x1, y1);
+
+      const x2 = d[3];
+      const y2 = d[4];
+      bound = addBound(bound, x2, y2);
     }
   }
+
+  GlobalOffsetX = 2 - parseInt(bound[0], 10);
+  GlobalOffsetY = 2 - parseInt(bound[2], 10);
+  GlobalWidth = 4 + parseInt(bound[1] - bound[0]);
+  GlobalImageWidth = parseInt(window.getComputedStyle(GlobalSvg).width, 10);
+
+  const parent = undefined;
+
+  for (const d of dataBoard) {
+    if (d[0] == 'footprint') {
+      // Просто рисунок посадочного места
+      drawFootprint(false, d, 0, false);
+    } else if (d[0] == 'gr_line') {
+      const x1 = scaleCoordX(d[1]);
+      const y1 = scaleCoordY(d[2]);
+      const x2 = scaleCoordX(d[3]);
+      const y2 = scaleCoordY(d[4]);
+      var w = scaleCoord(d[5]);
+      const style = d[6];
+      const layer = d[7];
+
+      var colour = '';
+
+      if (layer == 'Dwgs.User' || layer == 'Eco2.User') continue;
+      // Верхние, нижние дорожки
+      if (layer == 'F.Cu' || layer == 'B.Cu') continue;
+
+      // Контур
+      if (layer == 'Edge.Cuts') { colour = '#DADA66'; w = 4.0; }
+      // Шелкография
+      else if (layer == 'F.SilkS') colour = colourFootprint; //  || layer == 'B.SilkS') {
+      else colour = 'none';
+
+      drawLine(x1, y1, x2, y2, w, colour, false, parent);
+
+    } else if (d[0] == 'gr_arc') {
+      const sx = scaleCoordX(d[1]);
+      const sy = scaleCoordY(d[2]);
+      const mx = scaleCoordX(d[3]);
+      const my = scaleCoordY(d[4]);
+      const ex = scaleCoordX(d[5]);
+      const ey = scaleCoordY(d[6]);
+      var w = scaleCoord(d[7]);
+      const style = d[8];
+      const layer = d[9];
+
+      var colour = '';
+
+      if (layer == 'Dwgs.User' || layer == 'Eco2.User') continue;
+      // Верхние, нижние дорожки
+      if (layer == 'F.Cu' || layer == 'B.Cu') continue;
+
+      // Контур
+      if (layer == 'Edge.Cuts') { colour = '#DADA66'; w = 4.0; }
+      // Шелкография
+      else if (layer == 'F.SilkS') colour = colourFootprint; //  || layer == 'B.SilkS') {
+      else colour = 'black';
+
+      drawArc(sx, sy, mx, my, ex, ey, w, colour, parent);
+
+    } else if (d[0] == 'via') {
+
+/*
+    } else if (d[0] == 'via') {
+      drawVia(
+              d[1][1],
+              d[1][2],
+              d[2],
+              d[3],
+              d[4],
+             );
+*/
+ 
+   } else if (d[0] == 'gr_text') {
+      const type = '';
+      const value =  d[1];
+      const x =      d[2][1];
+      const y =      d[2][2];
+      const angle = -d[2][3];
+      const font_x = d[3][1];
+      const font_y = d[3][2];
+      const font_t = d[3][3];
+      const font_i = d[3][4];
+      const layer = d[4];
+      const justify = d[5];
+
+      var colour = '';
+
+      if (layer == 'Dwgs.User' || layer == 'Eco2.User') continue;
+      // Верхние, нижние дорожки
+      if (layer == 'F.Cu' || layer == 'B.Cu') continue;
+
+      // Шелкография
+      if (layer == 'F.SilkS') colour = colourFootprint; //  || layer == 'B.SilkS') {
+
+      if (colour == '') continue;
+
+      drawText(type, value, x,y,angle,font_x,font_y,font_t,font_i,colour,justify);
+    }
+  }
+}
+
+/**
+ * Нарисовать элемент
+ *
+ * name - имя элемента (идентификатор, позиционное обозначение)
+ * boardNum - номер платы (0 - MainBoard, 1 - KeyBoard)
+ */
+function drawElement(name, boardNum = 0) {
+
+  const dataBoard = GlobalDataBoard[boardNum];
+
+  for (const d of dataBoard) {
+    if (d[0] == 'footprint' && name == getTitle(d)) {
+      // Просто рисунок посадочного места
+      drawFootprint(false, d, 0, false);
+      return;
+    }
+  }
+}
+
+/**
+ * Подготовить рисунок платы для этапа сборки
+ *
+ * stepName - строка названия этапа сборки
+ * boardNum - номер платы (0 - MainBoard по умолчанию, 1 - KeyBoard)
+ */
+function showStep(stepName, boardNum = 0) {
+  GlobalDot = '';
+  GlobalColour = '';
+
+  // Рисунок печатной платы
+  drawBoard(boardNum);
+  // Подготовка появляющихся при наведении контуров
+  collectFootprints(boardNum, false);
+  // Рамка с названием этапа
+  drawTitle(stepName);
 }

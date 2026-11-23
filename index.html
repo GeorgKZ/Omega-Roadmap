@@ -4,6 +4,8 @@
 <title>Компьютер &laquo;Омега&raquo; шаг за шагом</title>
 <link rel="alternate" href="https://msxmakers.design.blog/proyectos/proyectos-msx/omega-home-computer/omega-paso-a-paso/"/>
 <link rel="stylesheet" href="./styles.css">
+<script type="text/javascript" src="mainboard.js"></script>
+<script type="text/javascript" src="keyboard.js"></script>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="veil.js"></script>
 </head>
@@ -1776,12 +1778,39 @@ MSX Diagnostics v1.2.0</a>, позволяющий проверить работ
 установлены правильно, соответствуют типу видеопроцессора <a href="./bom.html#U3">U3</a>.
 </p>
 
+<script type="text/javascript">
+function onLoad_step01(element) {
+
+  GlobalSvg = element;
+
+  showStep('Первый шаг');
+
+  GlobalColour = NewIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U26');
+  drawElement('U42');
+  drawElement('U46');
+
+}
+</script>
+
 <center>
-	<img src="step_01.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step01(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены установленные микросхемы.
+Коралловыми рамками отмечены установленные микросхемы.
 	</cite>
 </center>
+
+
 
 <p>
 <u><strong>Первый шаг</strong></u>:

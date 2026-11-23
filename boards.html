@@ -785,17 +785,9 @@ svg :target {
 
 <!-- плата -->
 <div>
-
-<h2>Чертёж системной платы</h2>
-
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-  id="svg_mainboard"
-  onload='onLoad_mainboard(this, 338)'
-  width="1200px" height="600px"
->
-  <image xlink:href="mainboard.svg" width="100%" />
-</svg>
-
+	<h2>Чертёж системной платы</h2>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+          onload='onLoad_board(this,0)' width="1200px" height="600px"></svg>
 </div>
 
 <!-- таблица -->
@@ -908,16 +900,10 @@ svg :target {
 <!-- плата клавиатуры -->
 <div>
 
-<h2>Чертёж платы клавиатуры</h2>
+	<h2>Чертёж платы клавиатуры</h2>
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-  id="svg_keyboard"
-  onload='onLoad_keyboard(this, 338)'
-  width="1200px" height="600px"
->
-  <image xlink:href="keyboard.svg" width="100%" />
-</svg>
-
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload='onLoad_board(this,1)' width="1200px" height="600px"></svg>
 </div>
 
 </div>
@@ -947,8 +933,9 @@ svg :target {
 </li>
 
 <li>
-При нажатии на элемент с удержанием клавиши Ctrl происходит переход на страницу с полным списком
-элементов, на соответствующую нажатому элементу строку.
+При нажатии на рисунок посадочного места или строку таблицы с удержанием клавиши Ctrl
+происходит переход на страницу с полным списком элементов, на соответствующую нажатому
+элементу (посадочному месту или строке таблицы) строку.
 </li>
 
 <li>
@@ -960,8 +947,6 @@ svg :target {
 <li>
 Кнопка Foot возвращает обычный режим работы с посадочными местами элементов, убирая отображение всех дорожек.
 </li>
-
-
 </ul>
 
 </body>
