@@ -1942,7 +1942,6 @@ function onLoad_step02(element) {
   drawElement('JP1');
   drawElement('JP5');
   drawElement('JP6');
-
 }
 </script>
 
@@ -1974,7 +1973,7 @@ function onLoad_step02(element) {
 <a name="step_03"></a>
 <p>
 На <u><strong>третьем шаге</strong></u> установим микросхемы видеопамяти <a href="./bom.html#U8_9_10_11">U8</a>-<a href="./bom.html#U8_9_10_11">U11</a>.
-На рисунке платы они отмечены оранжевой рамкой:
+На рисунке платы они отмечены оранжевыми рамками:
 </p>
 
 <script type="text/javascript">
@@ -2026,7 +2025,7 @@ function onLoad_step03(element) {
 	</svg>
 	<br>
 	<cite>
-Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2119,7 +2118,7 @@ function onLoad_step04(element) {
 	</svg>
 	<br>
 	<cite>
-Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2240,12 +2239,10 @@ function onLoad_step05(element) {
   drawElement('U34');
 
   GlobalDot = '';
-
   GlobalColour = NewIC;
 
   drawElement('U5');
   drawElement('U27');
-
 }
 </script>
 
@@ -2255,7 +2252,7 @@ function onLoad_step05(element) {
 	</svg>
 	<br>
 	<cite>
-Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2316,16 +2313,80 @@ function onLoad_step06(element) {
 <p>
 Установим в панельки микросхему логики <a href="./bom.html#U43">U43</a> и (если у нас есть) запишем
 в ПЗУ <a href="./bom.html#U6">U6</a> прошивку с поддержкой системы цветности PAL, например <a href="#f3">Прошивка &laquo;PAL&raquo;</a>.
-Джамперы <a href="./bom.html#J5">J5</a> и <a href="./bom.html#J6">J6</a>, разумеется, необходимо будет установить в <a href="#jumper_table2">
+Джамперы <a href="./bom.html#JP3_6">JP5</a> и <a href="./bom.html#JP3_6">JP6</a>, разумеется, необходимо будет установить в <a href="#jumper_table2">
 правильное положение</a> (конечно, если мы ставим прошивку BIOS с поддержкой PAL), и мы наконец сможем увидеть
 на экране телевизора цветное изображение, переданное в системе PAL.
 Это изображение платы, как она выглядит на <strong>седьмом шаге</strong>:
 </p>
 
+
+<script type="text/javascript">
+function onLoad_step07(element) {
+
+  GlobalSvg = element;
+
+  showStep('Седьмой шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+  drawElement('U34');
+
+  GlobalDot = '';
+  GlobalColour = NewIC;
+
+  drawElement('U43');
+
+  drawElement('JP5');
+  drawElement('JP6');
+}
+</script>
+
 <center>
-	<img src="step_07.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step07(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечена дополнительно установленная микросхема, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевой рамкой отмечена дополнительно установленная микросхема, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2340,10 +2401,73 @@ function onLoad_step06(element) {
 воспроизводиться с нормальной громкостью. Это <strong>восьмой шаг</strong>.
 </p>
 
+<script type="text/javascript">
+function onLoad_step08(element) {
+
+  GlobalSvg = element;
+
+  showStep('Восьмой шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+  drawElement('U34');
+
+  GlobalDot = '';
+  GlobalColour = NewIC;
+
+  drawElement('U48');
+}
+</script>
+
 <center>
-	<img src="step_08.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step08(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечена дополнительно установленная микросхема, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевой рамкой отмечена дополнительно установленная микросхема, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2361,10 +2485,77 @@ function onLoad_step06(element) {
 
 </p>
 
+<script type="text/javascript">
+function onLoad_step09(element) {
+
+  GlobalSvg = element;
+
+  showStep('Девятый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('U48');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+
+  GlobalDot = '';
+  GlobalColour = NewIC;
+
+  drawElement('U4');
+  drawElement('U34');
+  drawElement('U35');
+  drawElement('U36');
+  drawElement('U44');
+}
+</script>
+
 <center>
-	<img src="step_09.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step09(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхеме, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2398,10 +2589,81 @@ function onLoad_step06(element) {
 Так должна выглядеть плата на <u><strong>десятом шаге</strong></u>:
 </p>
 
+<script type="text/javascript">
+function onLoad_step10(element) {
+
+  GlobalSvg = element;
+
+  showStep('Десятый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U4');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U34');
+  drawElement('U35');
+  drawElement('U36');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U44');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('U48');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalColour = NewIC;
+
+  drawElement('U14');
+  drawElement('U15');
+  drawElement('U16');
+  drawElement('U19');
+  drawElement('U20');
+  drawElement('U21');
+  drawElement('U25');
+
+}
+</script>
+
 <center>
-	<img src="step_10.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step10(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхеме, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2425,10 +2687,81 @@ function onLoad_step06(element) {
 Так должна выглядеть плата на <u><strong>одиннадцатом шаге</strong></u>:
 </p>
 
+<script type="text/javascript">
+function onLoad_step11(element) {
+
+  GlobalSvg = element;
+
+  showStep('Одиннадцатый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U4');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U14');
+  drawElement('U15');
+  drawElement('U16');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U19');
+  drawElement('U20');
+  drawElement('U21');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U25');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U34');
+  drawElement('U35');
+  drawElement('U36');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U44');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('U48');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalColour = NewIC;
+
+  drawElement('U49');
+}
+</script>
+
 <center>
-	<img src="step_11.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step11(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечена дополнительно установленная микросхема, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевой рамкой отмечена дополнительно установленная микросхема, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2452,10 +2785,90 @@ function onLoad_step06(element) {
 <u><strong>двенадцатом шаге</strong></u> можно будет попробовать джойстик.
 </p>
 
+<a name="step_11"></a>
+<p>
+Прежде чем начинать играть в загружаемые с магнитофона игры, надо вставить компаратор
+<a href="./bom.html#U49">U49</a>.
+Так должна выглядеть плата на <u><strong>одиннадцатом шаге</strong></u>:
+</p>
+
+<script type="text/javascript">
+function onLoad_step12(element) {
+
+  GlobalSvg = element;
+
+  showStep('Двенадцатый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U4');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U14');
+  drawElement('U15');
+  drawElement('U16');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U19');
+  drawElement('U20');
+  drawElement('U21');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U25');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U34');
+  drawElement('U35');
+  drawElement('U36');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U44');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('U48');
+  drawElement('U49');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalColour = NewIC;
+
+  drawElement('U28');
+  drawElement('U29');
+}
+</script>
+
 <center>
-	<img src="step_12.jpg"  width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step12(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
@@ -2478,10 +2891,85 @@ function onLoad_step06(element) {
 и скрестим пальцы, чтобы все заработало на последнем <u><strong>тринадцатом шаге</strong></u>.
 </p>
 
+<script type="text/javascript">
+function onLoad_step13(element) {
+
+  GlobalSvg = element;
+
+  showStep('Тринадцатый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U4');
+  drawElement('U5');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U14');
+  drawElement('U15');
+  drawElement('U16');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U19');
+  drawElement('U20');
+  drawElement('U21');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U25');
+  drawElement('U26');
+  drawElement('U27');
+  drawElement('U28');
+  drawElement('U29');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U34');
+  drawElement('U35');
+  drawElement('U36');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U43');
+  drawElement('U44');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('U48');
+  drawElement('U49');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalColour = NewIC;
+
+  drawElement('U24');
+  drawElement('U33');
+}
+</script>
+
 <center>
-	<img src="step_13.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step13(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красной рамкой отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущих шагах.
 	</cite>
 </center>
 
