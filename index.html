@@ -1815,7 +1815,7 @@ function onLoad_step01(element) {
 	</svg>
 	<br>
 	<cite>
-Коралловыми рамками отмечены установленные микросхемы.
+Оранжевыми рамками отмечены установленные микросхемы.
 	</cite>
 </center>
 
@@ -1952,7 +1952,7 @@ function onLoad_step02(element) {
 	</svg>
 	<br>
 	<cite>
-Коралловыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
 
@@ -1974,7 +1974,7 @@ function onLoad_step02(element) {
 <a name="step_03"></a>
 <p>
 На <u><strong>третьем шаге</strong></u> установим микросхемы видеопамяти <a href="./bom.html#U8_9_10_11">U8</a>-<a href="./bom.html#U8_9_10_11">U11</a>.
-На рисунке платы они отмечены коралловой рамкой:
+На рисунке платы они отмечены оранжевой рамкой:
 </p>
 
 <script type="text/javascript">
@@ -2026,7 +2026,7 @@ function onLoad_step03(element) {
 	</svg>
 	<br>
 	<cite>
-Коралловыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
 
@@ -2052,13 +2052,74 @@ function onLoad_step03(element) {
 регистры <a href="./bom.html#U22">U22</a> и <a href="./bom.html#U23_24">U23</a>,
 дешифратор <a href="./bom.html#U32">U32</a>,
 регистры <a href="./bom.html#U15_16_17_18">U18</a>, <a href="./bom.html#U15_16_17_18">U17</a>, 
-статическая память <a href="./bom.html#U7">U7</a>, как показано на фотографии:
+статическая память <a href="./bom.html#U7">U7</a>, как показано на рисунке:
 </p>
 
+<script type="text/javascript">
+function onLoad_step04(element) {
+
+  GlobalSvg = element;
+
+  showStep('Четвёртый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U26');
+  drawElement('U30');
+  drawElement('U39');
+  drawElement('U42');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+
+  GlobalColour = NewIC;
+  GlobalDot = '';
+
+  drawElement('U7');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U45');
+
+  GlobalDot = '6 10';
+  drawElement('U34');
+}
+</script>
+
 <center>
-	<img src="step_04.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step04(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
 
@@ -2098,6 +2159,23 @@ function onLoad_step03(element) {
 Посмотрите например, тикают ли часы, без которых MS BASIC просто не запустится.
 </p>
 
+<blockquote>
+Примечание<br>
+	<cite>
+Без установленных микросхем
+<a href="./bom.html#U34">U34</a>
+(формирует сигнал <span class="overline">M1_WAIT</span>
+из CLK и <span class="overline">M1</span>) и
+<a href="./bom.html#U14">U14</a>
+(собирает сигнал <span class="overline">WAIT</span> из
+<span class="overline">M1_WAIT</span>, <span class="overline">VDP_WAIT</span> и т.д.)
+не будет правильно формироваться сигнал <span class="overline">WAIT</span>,
+и как следствие, в процессе взаимодействия процессора с видеопроцессором загружаемый
+в оперативную память видеопроцессора шрифт будет слегка повреждаться случайным образом.
+	</cite>
+</blockquote>
+
+
 <h2>
 Пятая ступень
 </h2>
@@ -2111,10 +2189,73 @@ function onLoad_step03(element) {
 (например, <a href="#f1">&laquo;Стандартная&raquo; прошивка</a>). Плата при этом будет выглядеть так:
 </p>
 
+<script type="text/javascript">
+function onLoad_step05(element) {
+
+  GlobalSvg = element;
+
+  showStep('Пятый шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U7');
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U17');
+  drawElement('U18');
+  drawElement('U22');
+  drawElement('U23');
+  drawElement('U26');
+  drawElement('U30');
+  drawElement('U31');
+  drawElement('U32');
+  drawElement('U37');
+  drawElement('U38');
+  drawElement('U39');
+  drawElement('U40');
+  drawElement('U41');
+  drawElement('U42');
+  drawElement('U45');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+  drawElement('U34');
+
+  GlobalDot = '';
+
+  GlobalColour = NewIC;
+
+  drawElement('U5');
+  drawElement('U27');
+
+}
+</script>
+
 <center>
-	<img src="step_05.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step05(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Оранжевыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
 
@@ -2141,10 +2282,29 @@ function onLoad_step03(element) {
 загораются ли светодиоды CAPS и KANA. И это будет <u><strong>шестой шаг</strong></u>.
 </p>
 
+<script type="text/javascript">
+function onLoad_step06(element) {
+
+  GlobalSvg = element;
+
+  showStep('Шестой шаг', 1);
+
+  GlobalColour = NewIC;
+  GlobalDot = '';
+
+  drawElement('U1', 1);
+  drawElement('U2', 1);
+}
+</script>
+
+
 <center>
-	<img src="step_06.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step06(this)" width="1240px" height="470px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены установленные на плату клавиатуры микросхемы.
+Оранжевыми рамками отмечены установленные на плату клавиатуры микросхемы.
 	</cite>
 </center>
 
