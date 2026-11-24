@@ -649,14 +649,13 @@ function drawLine(x1,y1,x2,y2,w,colour,trace,parent=undefined) {
     line.setAttributeNS(null,'stroke', colour);
     line.setAttributeNS(null,'stroke-width', w);
     line.setAttributeNS(null,'stroke-opacity', 0.0);
-    line.setAttributeNS(null,'style', 'stroke-linecap:round; stroke-linejoin:round; pointer-events:none;');
   } else {
     if (w > 0) {
       line.setAttributeNS(null,'stroke', colour);
       line.setAttributeNS(null,'stroke-width', w);
     }
-    line.setAttributeNS(null,'style', 'stroke-linecap:round; stroke-linejoin:round;');
   }
+  line.setAttributeNS(null,'style', 'stroke-linecap:round; stroke-linejoin:round; pointer-events:none;');
 
   if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
     line.setAttributeNS(null,'stroke-dasharray', GlobalDot);
@@ -674,7 +673,7 @@ function dist(a, b) {
 }
 
 /**
- * Нарислвать дугу
+ * Нарисовать дугу
  */
 function drawArc(sx,sy,mx,my,ex,ey,w,colour,parent=undefined) {
 
@@ -719,7 +718,7 @@ function drawArc(sx,sy,mx,my,ex,ey,w,colour,parent=undefined) {
     arc.setAttributeNS(null,'stroke', colour);
     arc.setAttributeNS(null,'stroke-width', w);
   }
-  arc.setAttributeNS(null, 'style', 'stroke-linecap:round; stroke-linejoin:round;');
+  arc.setAttributeNS(null, 'style', 'stroke-linecap:round; stroke-linejoin:round; pointer-events:none;');
 
   if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
     arc.setAttributeNS(null,'stroke-dasharray', GlobalDot);
@@ -780,6 +779,7 @@ function drawCircle(cx,cy,r,w,stoke_type,fill,colour,parent=undefined) {
   if (GlobalDot != undefined && GlobalDot != '' && GlobalDot != 'none') {
     circle.setAttributeNS(null, 'stroke-dasharray', GlobalDot);
   }
+  circle.setAttributeNS(null, 'style', 'stroke-linecap:round; stroke-linejoin:round; pointer-events:none;');
 
   (parent == undefined ? GlobalSvg : parent).appendChild(circle);
 }
@@ -1088,17 +1088,16 @@ function drawFootprint(isHollow, data, boardNum, boardMode) {
 
   if (GlobalColour != undefined && GlobalColour != '' && GlobalColour != 'none') {
 
-    // Создать текстовое обозначение элемента
-    var text = document.createElementNS(svgNS,'text');
     const w = bound[1] - bound[0];
     const h = bound[3] - bound[2];
     const x = bound[0] + w/2;
     const y = bound[2] + h/2;
 
     var fontSize;
-    if (w < 30) {
+    var rotate = false;
+    if (w < h && w < 30) {
       fontSize = w * 0.85;
-      text.setAttributeNS(null,'transform', 'rotate(-90 ' + x.toString() + ' ' + y.toString() + ')');
+      rotate = true;
     } else {
       fontSize = w / title.length * 1.4;
       if (h < fontSize) {
@@ -1106,12 +1105,19 @@ function drawFootprint(isHollow, data, boardNum, boardMode) {
       }
     }
 
+    if (fontSize < 10) return;
+
+    // Создать текстовое обозначение элемента
+    var text = document.createElementNS(svgNS,'text');
+    if (rotate) {
+      text.setAttributeNS(null,'transform', 'rotate(-90 ' + x.toString() + ' ' + y.toString() + ')');
+    }
     text.setAttributeNS(null,'x', x);
     text.setAttributeNS(null,'y', y + fontSize * 0.1);
     text.setAttributeNS(null,'font-size', fontSize.toString() + 'px');
     text.setAttributeNS(null,'fill', GlobalColour);
     text.setAttributeNS(null,'stroke','black');
-    text.setAttributeNS(null,'stroke-width',0.5);
+    text.setAttributeNS(null,'stroke-width', fontSize * 0.03);
     text.setAttributeNS(null,'font-family','Noto Sans');
     text.setAttributeNS(null,'font-weight','bold');
     text.setAttributeNS(null,'text-anchor','middle');

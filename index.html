@@ -1797,6 +1797,15 @@ function onLoad_step01(element) {
   drawElement('U42');
   drawElement('U46');
 
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+  drawElement('BT1');
+
 }
 </script>
 
@@ -1896,12 +1905,57 @@ function onLoad_step01(element) {
 Плата будет выглядеть примерно так:
 </p>
 
+<script type="text/javascript">
+function onLoad_step02(element) {
+
+  GlobalSvg = element;
+
+  showStep('Второй шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U26');
+  drawElement('U42');
+  drawElement('U46');
+
+  drawElement('JP3');
+  drawElement('JP4');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+
+  GlobalColour = NewIC;
+  GlobalDot = '';
+
+  drawElement('U2');
+  drawElement('U30');
+  drawElement('U39');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP5');
+  drawElement('JP6');
+
+}
+</script>
+
 <center>
-	<img src="step_02.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step02(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущем шаге.
+Коралловыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
+
 
 <p>
 Включаем телевизор, выбираем нужный видеовход, и&hellip;
@@ -1920,13 +1974,59 @@ function onLoad_step01(element) {
 <a name="step_03"></a>
 <p>
 На <u><strong>третьем шаге</strong></u> установим микросхемы видеопамяти <a href="./bom.html#U8_9_10_11">U8</a>-<a href="./bom.html#U8_9_10_11">U11</a>.
-На фотографии платы они отмечены красной рамкой:
+На рисунке платы они отмечены коралловой рамкой:
 </p>
 
+<script type="text/javascript">
+function onLoad_step03(element) {
+
+  GlobalSvg = element;
+
+  showStep('Третий шаг');
+
+  GlobalColour = OldIC;
+  GlobalDot = '';
+
+  drawElement('U1');
+  drawElement('U2');
+  drawElement('U3');
+  drawElement('U6');
+  drawElement('U12');
+  drawElement('U13');
+  drawElement('U26');
+  drawElement('U30');
+  drawElement('U39');
+  drawElement('U42');
+  drawElement('U46');
+  drawElement('U47');
+  drawElement('BT1');
+
+  drawElement('JP1');
+  drawElement('JP3');
+  drawElement('JP4');
+  drawElement('JP5');
+  drawElement('JP6');
+
+  GlobalDot = '6 10';
+  drawElement('U14');
+
+  GlobalColour = NewIC;
+  GlobalDot = '';
+
+  drawElement('U8');
+  drawElement('U9');
+  drawElement('U10');
+  drawElement('U11');
+}
+</script>
+
 <center>
-	<img src="step_03.jpg" width="1024"/><br>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+	  onload="onLoad_step03(this)" width="1240px" height="600px">
+	</svg>
+	<br>
 	<cite>
-Красными рамками отмечены дополнительно установленные микросхемы, жёлтыми &mdash; установленные на предыдущих шагах.
+Коралловыми рамками отмечены дополнительно установленные микросхемы, синими &mdash; установленные на предыдущем шаге.
 	</cite>
 </center>
 
